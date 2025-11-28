@@ -3,265 +3,1685 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VOLAS NexGen Marine - Global Ship Management Services</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="VOLAS NexGen Marine - Leading global provider of independent ship management, maritime audits, vessel surveys, and specialized marine services.">
+    <title>VOLAS NexGen Marine | Premium Maritime Services & Ship Management</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* ========================================
+           CSS VARIABLES & DESIGN SYSTEM
+        ======================================== */
+        :root {
+            /* Primary Colors */
+            --navy-900: #0B2541;
+            --navy-800: #1A3A52;
+            --navy-700: #254563;
+            --navy-600: #2C5282;
+            --ocean-500: #2B6CB0;
+            --ocean-400: #3182CE;
+            --ocean-300: #63B3ED;
+            --sky-200: #90CDF4;
+            --sky-100: #DBEAFE;
+            
+            /* Accent Colors */
+            --gold-500: #F59E0B;
+            --gold-400: #FBBF24;
+            --gold-300: #FCD34D;
+            
+            /* Neutral Colors */
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+            
+            /* Font Sizes */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+            --text-6xl: 3.75rem;
+            
+            /* Spacing */
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+            --transition-slow: 350ms ease;
+        }
+
+        /* ========================================
+           RESET & BASE STYLES
+        ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--gray-800);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--navy-900);
+        }
+
+        h1 { font-size: var(--text-5xl); }
+        h2 { font-size: var(--text-4xl); }
+        h3 { font-size: var(--text-3xl); }
+        h4 { font-size: var(--text-2xl); }
+        h5 { font-size: var(--text-xl); }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color var(--transition-base);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-family: inherit;
+        }
+
+        /* ========================================
+           UTILITY CLASSES
+        ======================================== */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+
+        .section {
+            padding: var(--space-20) 0;
+        }
+
+        /* ========================================
+           HEADER & NAVIGATION
+        ======================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            transition: all var(--transition-base);
+        }
+
+        .header-scrolled {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-4) 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--navy-900);
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: var(--space-8);
+            list-style: none;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--gray-700);
+            transition: color var(--transition-base);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--ocean-500);
+            transition: width var(--transition-base);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--ocean-500);
+        }
+
+        .cta-button {
+            padding: var(--space-3) var(--space-6);
+            background: linear-gradient(135deg, var(--ocean-500), var(--ocean-400));
+            color: var(--white);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            transition: all var(--transition-base);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--navy-900);
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-base);
+        }
+
+        /* ========================================
+           HERO SECTION
+        ======================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(11, 37, 65, 0.95), rgba(26, 58, 82, 0.85));
+            margin-top: 80px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            max-width: 800px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: var(--text-6xl);
+            color: var(--white);
+            margin-bottom: var(--space-6);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: var(--text-2xl);
+            color: var(--sky-100);
+            margin-bottom: var(--space-8);
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .btn {
+            padding: var(--space-4) var(--space-8);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: var(--text-lg);
+            transition: all var(--transition-base);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Decorative elements */
+        .hero-shape {
+            position: absolute;
+            opacity: 0.1;
+        }
+
+        .hero-shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--gold-400);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+
+        .hero-shape-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--ocean-400);
+            border-radius: 50%;
+            bottom: 50px;
+            left: -50px;
+        }
+
+        /* ========================================
+           ABOUT SECTION
+        ======================================== */
+        .about {
+            padding: var(--space-20) 0;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-16);
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: var(--space-2) var(--space-4);
+            background: var(--sky-100);
+            color: var(--ocean-600);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: var(--space-3);
+        }
+
+        .section-title {
+            font-size: var(--text-4xl);
+            color: var(--navy-900);
+            margin-bottom: var(--space-4);
+        }
+
+        .section-description {
+            font-size: var(--text-lg);
+            color: var(--gray-600);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-16);
+            align-items: center;
+            margin-top: var(--space-12);
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-2xl);
+            width: 100%;
+            height: auto;
+        }
+
+        .about-text {
+            padding: var(--space-6);
+        }
+
+        .about-text p {
+            color: var(--gray-600);
+            margin-bottom: var(--space-4);
+            line-height: 1.8;
+        }
+
+        /* ========================================
+           MISSION & VISION SECTION
+        ======================================== */
+        .mission-vision {
+            padding: var(--space-20) 0;
+            background: linear-gradient(180deg, var(--navy-900) 0%, var(--navy-800) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-vision-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .mission-vision-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mission-vision .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-12);
+            margin-top: var(--space-12);
+        }
+
+        .mission-card, .vision-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            transition: all var(--transition-base);
+        }
+
+        .mission-card:hover, .vision-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-3xl);
+            color: var(--white);
+            margin-bottom: var(--space-6);
+        }
+
+        .card-title {
+            font-size: var(--text-3xl);
+            color: var(--white);
+            margin-bottom: var(--space-4);
+        }
+
+        .card-description {
+            color: var(--sky-100);
+            font-size: var(--text-lg);
+            line-height: 1.8;
+        }
+
+        .vision-points {
+            list-style: none;
+            margin-top: var(--space-4);
+        }
+
+        .vision-points li {
+            padding: var(--space-3) 0;
+            color: var(--sky-100);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+        }
+
+        .vision-points li::before {
+            content: '✓';
+            color: var(--gold-400);
+            font-weight: bold;
+            font-size: var(--text-xl);
+            flex-shrink: 0;
+        }
+
+        /* ========================================
+           PHILOSOPHY SECTION
+        ======================================== */
+        .philosophy {
+            padding: var(--space-20) 0;
+            background: var(--gray-50);
+        }
+
+        .philosophy-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-16);
+            align-items: center;
+            margin-top: var(--space-12);
+        }
+
+        .philosophy-image img {
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-2xl);
+            width: 100%;
+            height: auto;
+        }
+
+        .philosophy-points {
+            display: grid;
+            gap: var(--space-6);
+        }
+
+        .philosophy-point {
+            background: var(--white);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            border-left: 4px solid var(--ocean-500);
+        }
+
+        .philosophy-point:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .philosophy-point h4 {
+            color: var(--navy-900);
+            margin-bottom: var(--space-2);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .philosophy-point p {
+            color: var(--gray-600);
+            line-height: 1.8;
+        }
+
+        .point-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--ocean-500), var(--ocean-400));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: var(--text-lg);
+            flex-shrink: 0;
+        }
+
+        /* ========================================
+           SERVICES SECTION - IMPROVED DESIGN
+        ======================================== */
+        .services {
+            padding: var(--space-20) 0;
+            background: var(--white);
+        }
+
+        .services-tabs {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-2);
+            margin: var(--space-12) 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: var(--space-3) var(--space-6);
+            background: var(--gray-100);
+            color: var(--gray-700);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            transition: all var(--transition-base);
+            border: 2px solid transparent;
+        }
+
+        .tab-button:hover {
+            background: var(--sky-100);
+            color: var(--ocean-600);
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, var(--ocean-500), var(--ocean-400));
+            color: var(--white);
+            border-color: var(--ocean-600);
+        }
+
+        .service-category-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .service-category-section.active {
+            display: block;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-8);
+            margin-top: var(--space-8);
+        }
+
+        .service-card {
+            background: var(--gray-50);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--ocean-500), var(--gold-400));
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-2xl);
+            background: var(--white);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--ocean-500), var(--ocean-400));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-3xl);
+            color: var(--white);
+            margin-bottom: var(--space-6);
+        }
+
+        .service-title {
+            font-size: var(--text-2xl);
+            color: var(--navy-900);
+            margin-bottom: var(--space-4);
+        }
+
+        .service-list {
+            list-style: none;
+        }
+
+        .service-list li {
+            padding: var(--space-2) 0;
+            color: var(--gray-600);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-2);
+            font-size: var(--text-sm);
+            line-height: 1.6;
+        }
+
+        .service-list li::before {
+            content: '◆';
+            color: var(--gold-500);
+            font-size: var(--text-sm);
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        /* Additional Services Section */
+        .additional-services {
+            background: linear-gradient(135deg, var(--gray-50), var(--sky-100));
+            padding: var(--space-12);
+            border-radius: var(--radius-2xl);
+            margin-top: var(--space-16);
+        }
+
+        .additional-services h3 {
+            color: var(--navy-900);
+            margin-bottom: var(--space-6);
+            text-align: center;
+        }
+
+        .additional-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .additional-service-card {
+            background: var(--white);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+        }
+
+        .additional-service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .additional-service-card h4 {
+            color: var(--ocean-600);
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .additional-service-card p {
+            color: var(--gray-600);
+            font-size: var(--text-sm);
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           CTA SECTION
+        ======================================== */
+        .cta-section {
+            padding: var(--space-20) 0;
+            background: linear-gradient(135deg, var(--ocean-500) 0%, var(--ocean-400) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .cta-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cta-title {
+            font-size: var(--text-5xl);
+            color: var(--white);
+            margin-bottom: var(--space-4);
+        }
+
+        .cta-description {
+            font-size: var(--text-xl);
+            color: var(--sky-100);
+            margin-bottom: var(--space-8);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+        .footer {
+            background: var(--navy-900);
+            color: var(--white);
+            padding: var(--space-16) 0 var(--space-8) 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-12);
+            margin-bottom: var(--space-12);
+        }
+
+        .footer-logo {
+            margin-bottom: var(--space-4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .footer-description {
+            color: var(--sky-100);
+            line-height: 1.8;
+            margin-bottom: var(--space-6);
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--space-4);
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: all var(--transition-base);
+        }
+
+        .social-link:hover {
+            background: var(--gold-400);
+            transform: translateY(-3px);
+        }
+
+        .footer-section h4 {
+            color: var(--white);
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--space-3);
+        }
+
+        .footer-links a {
+            color: var(--sky-100);
+            transition: color var(--transition-base);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-400);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+            color: var(--sky-100);
+        }
+
+        .contact-item i {
+            color: var(--gold-400);
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--space-8);
+            text-align: center;
+            color: var(--sky-200);
+        }
+
+        /* ========================================
+           ANIMATIONS
+        ======================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+        ======================================== */
+        @media (max-width: 1024px) {
+            .about-content,
+            .mission-vision-grid,
+            .philosophy-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-8);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --text-6xl: 2.5rem;
+                --text-5xl: 2rem;
+                --text-4xl: 1.75rem;
+                --text-3xl: 1.5rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: var(--space-8) var(--space-4);
+                box-shadow: var(--shadow-xl);
+                transform: translateX(-100%);
+                transition: transform var(--transition-base);
+            }
+
+            .nav-menu.active {
+                transform: translateX(0);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- COMPONENT: LOADER -->
-    <div class="loader" id="loader">
-        <div class="wave-loader">
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                 <a href="#home" class="logo">
+                    <img src="images/logo.jpg" alt="VOLAS NexGen Marine Logo" style="border-radius: 50px;">
+                    <span>VOLAS NexGen Marine</span>
+                </a>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#mission-vision" class="nav-link">Mission & Vision</a></li>
+                    <li><a href="#philosophy" class="nav-link">Philosophy</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#contact" class="cta-button">Get Quote</a></li>
+                </ul>
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <!-- COMPONENT: NAVIGATION -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">
-                <img src="logo.jpg" alt="VOLAS NEXGEN MARINE" class="logo-img">
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#mission">Mission</a></li>
-                <li><a href="#philosophy">Philosophy</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- COMPONENT: HERO SECTION -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="ocean-waves"></div>
-        <div class="container">
-            <h1>VOLAS NEXGEN MARINE</h1>
-            <p class="tagline">Leading Global Provider of Independent Ship Management Services</p>
-            <p class="year">COMPANY PROFILE 2025 <span class="typing-effect"></span></p>
-            <a href="#services" class="cta-button">Explore Our Services</a>
+        <div class="hero-background">
+            <img src="images/Home.jpg" alt="Maritime Operations">
         </div>
-    </section>
-
-    <!-- COMPONENT: STATS SECTION -->
-    <section class="stats">
+        <div class="hero-shape hero-shape-1"></div>
+        <div class="hero-shape hero-shape-2"></div>
         <div class="container">
-            <div class="stats-container">
-                <div class="stat-item animate-on-scroll">
-                    <div class="stat-number" data-target="15">0</div>
-                    <div class="stat-label">Years of Excellence</div>
-                </div>
-                <div class="stat-item animate-on-scroll">
-                    <div class="stat-number" data-target="100">0</div>
-                    <div class="stat-label">Ships Managed</div>
-                </div>
-                <div class="stat-item animate-on-scroll">
-                    <div class="stat-number" data-target="500">0</div>
-                    <div class="stat-label">Professional Crew</div>
-                </div>
-                <div class="stat-item animate-on-scroll">
-                    <div class="stat-number" data-target="24">0</div>
-                    <div class="stat-label">Countries Served</div>
+            <div class="hero-content">
+                <h1 class="hero-title">VOLAS NexGen Marine</h1>
+                <p class="hero-subtitle">Services with Cushion of a Palm</p>
+                <p style="font-size: var(--text-lg); color: var(--sky-100); margin-bottom: var(--space-8);">
+                    Leading global provider of independent ship management services, maritime audits, vessel surveys, and specialized marine services.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary">
+                        <i class="fas fa-ship"></i>
+                        Explore Services
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-phone"></i>
+                        Contact Us
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- COMPONENT: ABOUT SECTION -->
-    <section class="about" id="about">
+    <!-- About Section -->
+    <section class="about section" id="about">
         <div class="container">
-            <h2 class="animate-on-scroll">About Us</h2>
+            <div class="section-header reveal">
+                <span class="section-tag">About VOLAS</span>
+                <h2 class="section-title">Leading Maritime Excellence</h2>
+                <p class="section-description">
+                    We are committed to doing the right things the right way, always challenging ourselves 
+                    to shape a better and sustainable maritime future.
+                </p>
+            </div>
+            
             <div class="about-content">
-                <p class="animate-on-scroll">VOLAS NexGen Marine is a leading global provider of independent ship management services, with a reputation for excellence and innovation driven by our passion for seafaring and for ships.</p>
-                <p class="animate-on-scroll">We are committed to doing the right things the right way, always challenging ourselves to shape a better and sustainable maritime future.</p>
-                <p class="animate-on-scroll">We continually seek to perform at the highest standards of safety, performance and crew wellbeing in our industry, values that are core to who we are. Our numbers reflect why clients trust us with their assets.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMPONENT: MISSION & VISION (UPDATED WITH IMAGES) -->
-    <section class="mission-vision" id="mission">
-        <div class="container">
-            <h2 class="animate-on-scroll">Mission & Vision</h2>
-            <div class="cards">
-                <!-- Mission Card -->
-                <div class="card slide-in-left">
-                    <div class="card-image">
-                        <!-- Replace with your actual image file -->
-                        <img src="Mission and Vision Pics.jpg" alt="Mission Image">
-                    </div>
-                    <h3>MISSION</h3>
-                    <p>VOLAS NexGen Marine aims to excel in shipping, trading & services by remaining transparent, focused and technologically advanced.</p>
-                    <p>To be the most reliable and trustworthy partner for our clients.</p>
+                <div class="about-image reveal">
+                    <img src="images/About_Us.jpg" alt="VOLAS NexGen Marine Services">
                 </div>
-                <!-- Vision Card -->
-                <div class="card slide-in-right">
-                    <div class="card-image">
-                        <!-- Replace with your actual image file -->
-                        <img src="Mission and Vision Pics.jpg" alt="Vision Image">
-                    </div>
-                    <h3>VISION</h3>
-                    <p>VOLAS NexGen Marine aims to be a leading shipping, trading & services provider to the maritime industry with absolute regard to safety and the environment.</p>
-                    <p>The company aims to keep abreast with ever evolving technology and offer modern and dynamic maritime solutions.</p>
+                <div class="about-text reveal">
+                    <h3 style="margin-bottom: var(--space-4); color: var(--navy-900);">Introduction</h3>
+                    <p>
+                        VOLAS NexGen Marine is a leading global provider of independent ship management services, 
+                        with a reputation for excellence and innovation driven by our passion for seafaring and for ships.
+                    </p>
+                    <p>
+                        We are committed to doing the right things the right way, always challenging ourselves to 
+                        shape a better and sustainable maritime future.
+                    </p>
+                    <p>
+                        We continually seek to perform at the highest standards of safety, performance and crew 
+                        wellbeing in our industry, values that are core to who we are. Our numbers reflect why 
+                        clients trust us with their assets.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- COMPONENT: PHILOSOPHY SECTION -->
-    <section class="philosophy" id="philosophy">
-        <div class="container">
-            <h2 class="animate-on-scroll">Our Philosophy</h2>
-            <ul class="philosophy-list">
-                <li class="slide-in-left">Our emphasis on crew welfare and safety culture sets us apart. We invest heavily in training and technology to ensure our seafarers thrive, which keeps operations smooth and clients satisfied.</li>
-                <li class="slide-in-left">We have a solid financial position that makes us a strong ally to our customers, partners, and stakeholders.</li>
-                <li class="slide-in-left">We bring the knowledge and high expectations of top-notch projects on sophisticated assets to all segments and all types of vessels.</li>
-            </ul>
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision section" id="mission-vision">
+        <div class="mission-vision-background">
+            <img src="images/Mission_and_Vision_Pics.jpg" alt="Mission and Vision Background">
         </div>
-    </section>
-
-    <!-- COMPONENT: TEAM SECTION -->
-    <!-- <section class="team" id="team">
         <div class="container">
-            <h2 class="animate-on-scroll">The Organization</h2>
-            <div class="team-grid">
-                <div class="team-member scale-in">
-                    <div class="team-avatar">
-                         <img src="Capt Sanjeev Kumar.jpg" alt="Capt Sanjeev">
+            <div class="section-header">
+                <span class="section-tag" style="background: rgba(255,255,255,0.1); color: var(--gold-400);">Our Direction</span>
+                <h2 class="section-title" style="color: var(--white);">Mission & Vision</h2>
+                <p class="section-description" style="color: var(--sky-100);">
+                    Driving excellence in maritime services with innovation and commitment
+                </p>
+            </div>
+
+            <div class="mission-vision-grid">
+                <div class="mission-card reveal">
+                    <div class="card-icon">
+                        <i class="fas fa-bullseye"></i>
                     </div>
-                    <h4>Capt Sanjeev Kumar</h4>
-                    <p>CHIEF OPERATION OFFICER</p>
+                    <h3 class="card-title">Mission</h3>
+                    <p class="card-description">
+                        VOLAS NexGen Marine aims to excel in shipping, trading & services by remaining transparent, 
+                        focused and technologically advanced. To be the most reliable and trustworthy partner for our clients.
+                    </p>
                 </div>
-                <div class="team-member scale-in">
-                    <div class="team-avatar">
-                        <img src="sunil.jpeg" alt="Capt Sunil Chaudhary">
+
+                <div class="vision-card reveal">
+                    <div class="card-icon">
+                        <i class="fas fa-eye"></i>
                     </div>
-                    <h4>Capt Sunil Chaudhary</h4>
-                    <p>GENERAL MANAGER</p>
-                </div>
-                <div class="team-member scale-in">
-                    <div class="team-avatar">
-                     <img src="vipul.jpeg" alt="Capt Vipul">
-                    </div>
-                    <h4>Capt Vipul Kumar</h4>
-                    <p>Associate</p>
+                    <h3 class="card-title">Vision</h3>
+                    <ul class="vision-points">
+                        <li>
+                            To be a leading shipping, trading & services provider to the maritime industry with 
+                            absolute regard to safety and the environment.
+                        </li>
+                        <li>
+                            Keep abreast with ever evolving technology and offer modern and dynamic maritime solutions.
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
-    <!-- COMPONENT: SERVICES SECTION (UPDATED - 4 COLUMNS) -->
-    <section class="services" id="services">
+    <!-- Philosophy Section -->
+    <section class="philosophy section" id="philosophy">
         <div class="container">
-            <h2 class="animate-on-scroll">Our Services</h2>
-            <div class="service-columns">
+            <div class="section-header reveal">
+                <span class="section-tag">Our Philosophy</span>
+                <h2 class="section-title">What Sets Us Apart</h2>
+                <p class="section-description">
+                    Our commitment to excellence and innovation drives everything we do
+                </p>
+            </div>
+
+            <div class="philosophy-content">
+                <div class="philosophy-image reveal">
+                    <img src="images/Our_Philosophy.jpg" alt="Our Philosophy">
+                </div>
                 
-                <!-- 1. Audits -->
-                <div class="service-category animate-on-scroll">
-                    <h3>Audits</h3>
-                    <ul>
-                        <li>Navigational Audit – On Site</li>
-                        <li>Navigational Audit – Remote by VDR Analysis</li>
-                        <li>Mooring Audit</li>
-                        <li>Cargo Audit</li>
-                        <li>Engineering Audit</li>
-                        <li>Environmental Audit</li>
-                        <li>LNG Bunkering Audit</li>
-                        <li>ISM / ISPS / MLC Audit</li>
-                        <li>Energy Audit</li>
-                        <li>Cyber Security Audit</li>
-                    </ul>
-                </div>
+                <div class="philosophy-points">
+                    <div class="philosophy-point reveal">
+                        <h4>
+                            <span class="point-icon"><i class="fas fa-users"></i></span>
+                            Crew Welfare & Safety Culture
+                        </h4>
+                        <p>
+                            Our emphasis on crew welfare and safety culture sets us apart. We invest heavily in 
+                            training and technology to ensure our seafarers thrive, which keeps operations smooth 
+                            and clients satisfied.
+                        </p>
+                    </div>
 
-                <!-- 2. Surveys -->
-                <div class="service-category animate-on-scroll">
-                    <h3>Surveys</h3>
-                    <ul>
-                        <li>Condition Surveys</li>
-                        <li>Bunker Survey</li>
-                        <li>Draft Survey</li>
-                        <li>Cargo Survey</li>
-                        <li>IHM Survey</li>
-                        <li>Damage Survey</li>
-                        <li>On-Hire / Off-Hire Surveys</li>
-                        <li>Marine Warranty Surveys</li>
-                        <li>P&I Surveys</li>
-                        <li>Hull Thickness Measurement Survey</li>
-                        <li>Fire Damage Survey</li>
-                        <li>Collision Damage Survey</li>
-                        <li>Yard Survey</li>
-                        <li>Lay Up Survey</li>
-                        <li>Hatch Cover Watertightness Survey</li>
-                        <li>Oil/Chemical Tankers wall wash test Survey</li>
-                    </ul>
-                </div>
+                    <div class="philosophy-point reveal">
+                        <h4>
+                            <span class="point-icon"><i class="fas fa-handshake"></i></span>
+                            Financial Strength
+                        </h4>
+                        <p>
+                            We have a solid financial position that makes us a strong ally to our customers, 
+                            partners, and stakeholders.
+                        </p>
+                    </div>
 
-                <!-- 3. Inspections -->
-                <div class="service-category animate-on-scroll">
-                    <h3>Inspections</h3>
-                    <ul>
-                        <li>Pre-Rightship RISQ 3.1 Inspections</li>
-                        <li>Pre-OCIMF SIRE 2.0 Inspections</li>
-                        <li>Pre-AMSA Inspections</li>
-                        <li>Pre-USCG Inspections</li>
-                        <li>Pre-Purchase Inspections</li>
-                        <li>Pre-PSC Inspections</li>
-                        <li>Pre-Flag State Inspections</li>
-                    </ul>
+                    <div class="philosophy-point reveal">
+                        <h4>
+                            <span class="point-icon"><i class="fas fa-trophy"></i></span>
+                            Excellence Across All Vessels
+                        </h4>
+                        <p>
+                            We bring the knowledge and high expectations of top-notch projects on sophisticated 
+                            assets to all segments and all types of vessels.
+                        </p>
+                    </div>
                 </div>
-
-                <!-- 4. Super-Cargo Attendance -->
-                <div class="service-category animate-on-scroll">
-                    <h3>Super-Cargo Attendance</h3>
-                    <ul>
-                        <li>General Cargo Break Bulk</li>
-                        <li>Oil tankers DPP-CPP Conversions</li>
-                        <li>Oil/Chemical Tankers Tank Cleanings</li>
-                        <li>Bulk Carrier Cargo Hold Cleanings</li>
-                    </ul>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- COMPONENT: CONTACT SECTION (STYLES UPDATED IN CSS) -->
-    <section class="contact" id="contact">
+    <!-- Services Section -->
+    <section class="services section" id="services">
         <div class="container">
-            <h2 class="animate-on-scroll">Contact Us</h2>
-            <div class="contact-info">
-                <div class="contact-item animate-on-scroll">
-                    <h4>Phone</h4>
-                    <p>+91 99396 08110</p>
+            <div class="section-header reveal">
+                <span class="section-tag">Our Services</span>
+                <h2 class="section-title">Comprehensive Maritime Solutions</h2>
+                <p class="section-description">
+                    Professional maritime services tailored to meet all your vessel requirements
+                </p>
+            </div>
+
+            <!-- Services Tabs -->
+            <div class="services-tabs">
+                <button class="tab-button active" data-tab="audits">
+                    <i class="fas fa-clipboard-check"></i> Audits
+                </button>
+                <button class="tab-button" data-tab="inspections">
+                    <i class="fas fa-search"></i> Inspections
+                </button>
+                <button class="tab-button" data-tab="surveys">
+                    <i class="fas fa-compass"></i> Surveys
+                </button>
+                <button class="tab-button" data-tab="cargo">
+                    <i class="fas fa-boxes"></i> Super-Cargo
+                </button>
+            </div>
+
+            <!-- Audits Tab -->
+            <div class="service-category-section active" id="audits">
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-ship"></i>
+                        </div>
+                        <h3 class="service-title">Navigational Audits</h3>
+                        <ul class="service-list">
+                            <li>Navigational Audit – On Site</li>
+                            <li>Navigational Audit – Remote by VDR Analysis</li>
+                            <li>Mooring Audit</li>
+                            <li>Comprehensive navigation system evaluation</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="service-title">Technical Audits</h3>
+                        <ul class="service-list">
+                            <li>Cargo Audit</li>
+                            <li>Engineering Audit</li>
+                            <li>Environmental Audit</li>
+                            <li>Energy Audit</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="service-title">Safety & Security</h3>
+                        <ul class="service-list">
+                            <li>ISM / ISPS / MLC Audit</li>
+                            <li>Cyber Security Audit</li>
+                            <li>LNG Bunkering Audit</li>
+                            <li>Comprehensive safety management systems</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="contact-item animate-on-scroll">
-                    <h4>Email</h4>
-                    <p><a href="mailto:info@volasnexgenmarine.com">info@volasnexgenmarine.com</a></p>
+            </div>
+
+            <!-- Inspections Tab -->
+            <div class="service-category-section" id="inspections">
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3 class="service-title">Pre-Audit Inspections</h3>
+                        <ul class="service-list">
+                            <li>Pre-OCIMF SIRE 2.0</li>
+                            <li>Pre-AMSA Inspection</li>
+                            <li>Pre-USCG Inspection</li>
+                            <li>Pre-RightShip Inspection</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3 class="service-title">Pre-Survey Inspections</h3>
+                        <ul class="service-list">
+                            <li>Pre-Purchase Inspection</li>
+                            <li>Pre-PSC Inspections</li>
+                            <li>Pre-Flag State Inspection</li>
+                            <li>Comprehensive vessel evaluation</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h3 class="service-title">Detailed Reports</h3>
+                        <ul class="service-list">
+                            <li>Expert evaluation of deficiencies</li>
+                            <li>Corrective action recommendations</li>
+                            <li>Detailed photo documentation</li>
+                            <li>Class & Flag coordination</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="contact-item animate-on-scroll">
-                    <h4>Website</h4>
-                    <p><a href="http://www.volasnexgenmarine.com">www.volasnexgenmarine.com</a></p>
+            </div>
+
+            <!-- Surveys Tab -->
+            <div class="service-category-section" id="surveys">
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-ruler-combined"></i>
+                        </div>
+                        <h3 class="service-title">Cargo & Draft Surveys</h3>
+                        <ul class="service-list">
+                            <li>Condition Surveys</li>
+                            <li>Bunker Survey</li>
+                            <li>Draft Survey</li>
+                            <li>Cargo Survey</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="service-title">Structural Surveys</h3>
+                        <ul class="service-list">
+                            <li>Hull Thickness Measurement Survey</li>
+                            <li>Hatch Cover Watertightness Survey</li>
+                            <li>Oil/Chemical Tankers Wall Wash Test</li>
+                            <li>Fire Damage Survey</li>
+                            <li>Collision Damage Survey</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-anchor"></i>
+                        </div>
+                        <h3 class="service-title">Specialized Surveys</h3>
+                        <ul class="service-list">
+                            <li>On-Hire / Off-Hire Surveys</li>
+                            <li>Marine Warranty Surveys</li>
+                            <li>P&I Surveys</li>
+                            <li>Yard (Newbuild / Repair) Survey</li>
+                            <li>Lay Up Survey</li>
+                            <li>IHM (Inventory of Hazardous Materials) Survey</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="contact-item animate-on-scroll">
-                    <h4>Address</h4>
-                    <p>F-403, Grand Ajnara Heritage,<br>
-                    Sector-74, Noida, UP-201301, India</p>
+            </div>
+
+            <!-- Super-Cargo Tab -->
+            <div class="service-category-section" id="cargo">
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <h3 class="service-title">Cargo Operations</h3>
+                        <ul class="service-list">
+                            <li>General Cargo Break Bulk Operations</li>
+                            <li>Load and Discharge Attendance</li>
+                            <li>Pre-stowage Planning</li>
+                            <li>On-site Supervision</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-oil-can"></i>
+                        </div>
+                        <h3 class="service-title">Tanker Operations</h3>
+                        <ul class="service-list">
+                            <li>Oil Tankers DPP-CPP Conversions</li>
+                            <li>Oil/Chemical Tankers Tank Cleanings</li>
+                            <li>Tank integrity verification</li>
+                            <li>Specialized tanker operations</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-warehouse"></i>
+                        </div>
+                        <h3 class="service-title">Bulk Carrier Services</h3>
+                        <ul class="service-list">
+                            <li>Bulk Carrier Cargo Hold Cleanings</li>
+                            <li>Hold preparation and inspection</li>
+                            <li>Cargo compatibility assessments</li>
+                            <li>Quality control and documentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Services -->
+            <div class="additional-services reveal">
+                <h3>Additional Services & Consultancy</h3>
+                <div class="additional-services-grid">
+                    <div class="additional-service-card">
+                        <h4><i class="fas fa-ship" style="color: var(--ocean-500);"></i> Ship Sale & Purchase</h4>
+                        <p>Comprehensive S&P support including pre-purchase inspections, due diligence, delivery logistics, and post-sale services worldwide.</p>
+                    </div>
+
+                    <div class="additional-service-card">
+                        <h4><i class="fas fa-hard-hat" style="color: var(--gold-500);"></i> New Building Supervision</h4>
+                        <p>End-to-end oversight from shipyard evaluation through testing and commissioning. Steel cutting to delivery monitoring.</p>
+                    </div>
+
+                    <div class="additional-service-card">
+                        <h4><i class="fas fa-handshake" style="color: var(--ocean-500);"></i> Agency Liaisoning</h4>
+                        <p>24/7 agency services across India, Singapore, Sri Lanka, Maldives and Mauritius for all vessel requirements.</p>
+                    </div>
+
+                    <div class="additional-service-card">
+                        <h4><i class="fas fa-wrench" style="color: var(--gold-500);"></i> Dry Dock Services</h4>
+                        <p>Complete dry dock management including planning, coordination with OEMs, supervision, and quality assurance.</p>
+                    </div>
+
+                    <div class="additional-service-card">
+                        <h4><i class="fas fa-eye" style="color: var(--ocean-500);"></i> On-Site Monitoring</h4>
+                        <p>Experienced captains and engineers for supply chain oversight, technical consultation, and operational support.</p>
+                    </div>
+
+                    <div class="additional-service-card">
+                        <h4><i class="fas fa-certificate" style="color: var(--gold-500);"></i> Certification Support</h4>
+                        <p>Coordination with Class and Flag surveyors to obtain relevant certifications and regulatory approvals.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- COMPONENT: FOOTER -->
-    <footer>
-        <p>&copy; 2025 VOLAS NexGen Marine. All rights reserved. | Excellence in Maritime Services</p>
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-background">
+            <img src="images/Last.jpg" alt="Contact VOLAS NexGen Marine">
+        </div>
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Get Started?</h2>
+                <p class="cta-description">
+                    Partner with VOLAS NexGen Marine for comprehensive maritime solutions tailored to your needs. 
+                    Our expert team is ready to assist you 24/7.
+                </p>
+                <div class="cta-buttons">
+                    <a href="tel:+919939608110" class="btn btn-primary">
+                        <i class="fas fa-phone"></i>
+                        Call: +91 99396 08110
+                    </a>
+                    <a href="mailto:info@volasnexgenmarine.com" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Email Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                           <div style="display: flex; align-items: center; gap: 12px;">
+                                <img src="images/logo.jpg"
+                                    alt="VOLAS NexGen Marine Logo"
+                                    style="border-radius: 50px; width: 60px; height: 60px;">
+
+                                <h3 style="color: var(--white); font-size: var(--text-3xl); margin: 0;">
+                                    VOLAS NexGen Marine
+                                </h3>
+                            </div>
+                        <p style="color: var(--gold-400);">Services with Cushion of a Palm</p>
+                    </div>
+                    <p class="footer-description">
+                        Leading global provider of independent ship management services, maritime audits, 
+                        and specialized marine services with excellence and innovation.
+                    </p>
+                    <!-- <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div> -->
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#mission-vision">Mission & Vision</a></li>
+                        <li><a href="#philosophy">Our Philosophy</a></li>
+                        <li><a href="#services">Services</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">Maritime Audits</a></li>
+                        <li><a href="#services">Vessel Surveys</a></li>
+                        <li><a href="#services">Inspections</a></li>
+                        <li><a href="#services">Dry Dock Services</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>F-403, Grand Ajnara Heritage,<br>Sector-74, Noida, UP-201301, India</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 99396 08110</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@volasnexgenmarine.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <span>www.volasnexgenmarine.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 VOLAS NexGen Marine. All rights reserved. | Designed with Excellence</p>
+            </div>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Active Navigation Link
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // Services Tabs
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const serviceSections = document.querySelectorAll('.service-category-section');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.dataset.tab;
+                
+                // Remove active class from all buttons and sections
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                serviceSections.forEach(section => section.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding section
+                button.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+
+        // Initialize AOS or other libraries if needed
+        console.log('VOLAS NexGen Marine website loaded successfully!');
+    </script>
 </body>
 </html>
