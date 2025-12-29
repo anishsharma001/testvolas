@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="VOLAS NexGen Marine - Leading global provider of independent ship management, maritime audits, vessel surveys, and specialized marine services.">
     <title>VOLAS NexGen Marine | Premium Maritime Services & Ship Management</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <style>
         /* ========================================
            CSS VARIABLES & DESIGN SYSTEM
@@ -24,16 +24,26 @@
             --navy-800: #1A3A52;
             --navy-700: #254563;
             --navy-600: #2C5282;
+            
+            /* Ocean/Marine Colors - NEW ACCENT (replacing gold/yellow) */
+            --ocean-600: #1E6091;
             --ocean-500: #2B6CB0;
             --ocean-400: #3182CE;
             --ocean-300: #63B3ED;
+            
+            /* Teal Accent - Marine Theme */
+            --teal-500: #0D9488;
+            --teal-400: #14B8A6;
+            --teal-300: #2DD4BF;
+            
+            /* Sky Colors */
             --sky-200: #90CDF4;
             --sky-100: #DBEAFE;
             
-            /* Accent Colors */
-            --gold-500: #F59E0B;
-            --gold-400: #FBBF24;
-            --gold-300: #FCD34D;
+            /* Accent Colors - Changed from Gold to Marine Teal/Cyan */
+            --accent-500: #0891B2;
+            --accent-400: #06B6D4;
+            --accent-300: #22D3EE;
             
             /* Neutral Colors */
             --white: #FFFFFF;
@@ -47,11 +57,11 @@
             --gray-700: #374151;
             --gray-800: #1F2937;
             --gray-900: #111827;
-            
+
             /* Typography */
             --font-primary: 'Poppins', sans-serif;
             --font-secondary: 'Inter', sans-serif;
-            
+
             /* Font Sizes */
             --text-xs: 0.75rem;
             --text-sm: 0.875rem;
@@ -63,7 +73,7 @@
             --text-4xl: 2.25rem;
             --text-5xl: 3rem;
             --text-6xl: 3.75rem;
-            
+
             /* Spacing */
             --space-2: 0.5rem;
             --space-3: 0.75rem;
@@ -75,7 +85,7 @@
             --space-12: 3rem;
             --space-16: 4rem;
             --space-20: 5rem;
-            
+
             /* Border Radius */
             --radius-sm: 0.375rem;
             --radius-md: 0.5rem;
@@ -83,19 +93,20 @@
             --radius-xl: 1rem;
             --radius-2xl: 1.5rem;
             --radius-full: 9999px;
-            
+
             /* Shadows */
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            
+
             /* Transitions */
             --transition-fast: 150ms ease;
             --transition-base: 250ms ease;
             --transition-slow: 350ms ease;
         }
+
 
         /* ========================================
            RESET & BASE STYLES
@@ -152,9 +163,6 @@
             font-family: inherit;
         }
 
-        /* ========================================
-           UTILITY CLASSES
-        ======================================== */
         .container {
             max-width: 1280px;
             margin: 0 auto;
@@ -165,15 +173,16 @@
             padding: var(--space-20) 0;
         }
 
+
         /* ========================================
-           HEADER & NAVIGATION
+           HEADER & NAVIGATION WITH MEGA DROPDOWN
         ======================================== */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             box-shadow: var(--shadow-sm);
             z-index: 1000;
@@ -207,8 +216,13 @@
 
         .nav-menu {
             display: flex;
-            gap: var(--space-8);
+            gap: var(--space-6);
             list-style: none;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
         }
 
         .nav-link {
@@ -216,6 +230,10 @@
             color: var(--gray-700);
             transition: color var(--transition-base);
             position: relative;
+            padding: var(--space-2) 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .nav-link::after {
@@ -238,18 +256,88 @@
             color: var(--ocean-500);
         }
 
-        .cta-button {
-            padding: var(--space-3) var(--space-6);
-            background: linear-gradient(135deg, var(--ocean-500), var(--ocean-400));
-            color: var(--white);
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            transition: all var(--transition-base);
+        .nav-link i.fa-chevron-down {
+            font-size: 10px;
+            transition: transform var(--transition-base);
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
+        .nav-item:hover .nav-link i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+
+        /* Mega Dropdown Menu */
+        .mega-dropdown {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: var(--navy-900);
+            padding: var(--space-10) 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-base);
+            z-index: 999;
+        }
+
+        .nav-item:hover .mega-dropdown {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mega-dropdown-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-8);
+        }
+
+        .mega-dropdown-column {
+            padding: 0 var(--space-4);
+        }
+
+        .mega-dropdown-column h4 {
+            color: var(--accent-400);
+            font-size: var(--text-lg);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: var(--space-4);
+            margin-bottom: var(--space-4);
+            border-bottom: 2px solid var(--accent-400);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .mega-dropdown-column h4 i {
+            font-size: var(--text-xl);
+        }
+
+        .mega-dropdown-column ul {
+            list-style: none;
+        }
+
+        .mega-dropdown-column ul li {
+            margin-bottom: var(--space-2);
+        }
+
+        .mega-dropdown-column ul li a {
+            color: var(--sky-100);
+            font-size: var(--text-sm);
+            transition: all var(--transition-base);
+            display: block;
+            padding: var(--space-2) 0;
+            border-left: 2px solid transparent;
+            padding-left: var(--space-3);
+        }
+
+        .mega-dropdown-column ul li a:hover {
+            color: var(--accent-400);
+            border-left-color: var(--accent-400);
+            padding-left: var(--space-4);
         }
 
         .menu-toggle {
@@ -267,20 +355,41 @@
             transition: all var(--transition-base);
         }
 
+
         /* ========================================
-           HERO SECTION
+           HERO SLIDER SECTION
         ======================================== */
         .hero {
             min-height: 100vh;
-            display: flex;
-            align-items: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(11, 37, 65, 0.95), rgba(26, 58, 82, 0.85));
             margin-top: 80px;
         }
 
-        .hero-background {
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 80px);
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slide-background {
             position: absolute;
             top: 0;
             left: 0;
@@ -289,113 +398,152 @@
             z-index: 0;
         }
 
-        .hero-background img {
+        .slide-background::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(11, 37, 65, 0.9), rgba(26, 58, 82, 0.8));
+        }
+
+        .slide-background img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.3;
         }
 
-        .hero-content {
+        .slide-content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             color: var(--white);
             max-width: 800px;
-            text-align: center;
-            margin: 0 auto;
+            padding: 0 var(--space-4);
         }
 
-        .hero-title {
+        .slide-content h1 {
             font-size: var(--text-6xl);
             color: var(--white);
-            margin-bottom: var(--space-6);
+            margin-bottom: var(--space-4);
             animation: fadeInUp 1s ease;
         }
 
-        .hero-subtitle {
-            font-size: var(--text-2xl);
-            color: var(--sky-100);
-            margin-bottom: var(--space-8);
-            animation: fadeInUp 1s ease 0.2s;
-            animation-fill-mode: both;
+        .slide-content h2 {
+            font-size: var(--text-3xl);
+            color: var(--accent-400);
+            margin-bottom: var(--space-4);
+            font-weight: 500;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: var(--space-4);
-            justify-content: center;
-            animation: fadeInUp 1s ease 0.4s;
-            animation-fill-mode: both;
-        }
-
-        .btn {
-            padding: var(--space-4) var(--space-8);
-            border-radius: var(--radius-full);
-            font-weight: 600;
+        .slide-content p {
             font-size: var(--text-lg);
+            color: var(--sky-100);
+            margin-bottom: var(--space-6);
+            line-height: 1.8;
+        }
+
+        /* Slider Navigation */
+        .slider-nav {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: var(--space-3);
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.3);
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-full);
+        }
+
+        .slider-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
             transition: all var(--transition-base);
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
+            border: 2px solid rgba(255, 255, 255, 0.8);
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
-            color: var(--white);
+        .slider-dot.active {
+            background: var(--white);
+            transform: scale(1.2);
+            border-color: var(--white);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-2xl);
+        .slider-dot:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: var(--white);
         }
 
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
+        .slider-arrows {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 var(--space-4);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .slider-arrow {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--white);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            pointer-events: auto;
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
+        .slider-arrow:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: var(--white);
+            transform: scale(1.1);
         }
 
-        /* Decorative elements */
-        .hero-shape {
-            position: absolute;
-            opacity: 0.1;
-        }
-
-        .hero-shape-1 {
-            width: 300px;
-            height: 300px;
-            background: var(--gold-400);
-            border-radius: 50%;
-            top: -100px;
-            right: -100px;
-        }
-
-        .hero-shape-2 {
-            width: 200px;
-            height: 200px;
-            background: var(--ocean-400);
-            border-radius: 50%;
-            bottom: 50px;
-            left: -50px;
-        }
 
         /* ========================================
-           ABOUT SECTION
+           ABOUT SECTION - FIXED LAYOUT
         ======================================== */
         .about {
             padding: var(--space-20) 0;
-            background: var(--white);
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--sky-100) 50%, var(--gray-50) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/About\ us\ background.jpg') center/cover;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .about .container {
+            position: relative;
+            z-index: 1;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: var(--space-16);
+            margin-bottom: var(--space-12);
         }
 
         .section-tag {
@@ -409,12 +557,46 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: var(--space-3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .section-title {
             font-size: var(--text-4xl);
             color: var(--navy-900);
-            margin-bottom: var(--space-4);
+            margin-bottom: var(--space-6);
+            position: relative;
+            display: block;
+            padding-bottom: var(--space-3);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--ocean-500), var(--accent-400));
+            border-radius: var(--radius-full);
         }
 
         .section-description {
@@ -427,10 +609,10 @@
 
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-16);
-            align-items: center;
-            margin-top: var(--space-12);
+            grid-template-columns: 1fr 1.2fr;
+            gap: var(--space-12);
+            align-items: start;
+            margin-top: var(--space-10);
         }
 
         .about-image {
@@ -442,17 +624,27 @@
             box-shadow: var(--shadow-2xl);
             width: 100%;
             height: auto;
+            position: sticky;
+            top: 100px;
         }
 
         .about-text {
-            padding: var(--space-6);
+            padding: var(--space-4);
+        }
+
+        .about-text h3 {
+            color: var(--navy-900);
+            margin-bottom: var(--space-4);
+            font-size: var(--text-2xl);
         }
 
         .about-text p {
             color: var(--gray-600);
-            margin-bottom: var(--space-4);
-            line-height: 1.8;
+            margin-bottom: var(--space-5);
+            line-height: 1.9;
+            text-align: justify;
         }
+
 
         /* ========================================
            MISSION & VISION SECTION
@@ -471,7 +663,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.1;
+            opacity: 0.25;
             z-index: 0;
         }
 
@@ -499,19 +691,55 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius-xl);
             padding: var(--space-8);
-            transition: all var(--transition-base);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-card::before, .vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .mission-card::after, .vision-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-400), var(--accent-500));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
 
         .mission-card:hover, .vision-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-2xl);
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(6, 182, 212, 0.3);
+        }
+
+        .mission-card:hover::before, .vision-card:hover::before {
+            opacity: 1;
+        }
+
+        .mission-card:hover::after, .vision-card:hover::after {
+            transform: scaleX(1);
         }
 
         .card-icon {
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+            background: linear-gradient(135deg, var(--accent-400), var(--accent-500));
             border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
@@ -519,6 +747,15 @@
             font-size: var(--text-3xl);
             color: var(--white);
             margin-bottom: var(--space-6);
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .mission-card:hover .card-icon, .vision-card:hover .card-icon {
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: 0 12px 35px rgba(6, 182, 212, 0.5);
         }
 
         .card-title {
@@ -544,90 +781,323 @@
             display: flex;
             align-items: flex-start;
             gap: var(--space-3);
+            transition: all 0.3s ease;
+        }
+
+        .vision-points li:hover {
+            color: var(--white);
+            padding-left: var(--space-2);
         }
 
         .vision-points li::before {
             content: '✓';
-            color: var(--gold-400);
+            color: var(--accent-400);
             font-weight: bold;
             font-size: var(--text-xl);
             flex-shrink: 0;
+            transition: all 0.3s ease;
         }
 
+        .vision-points li:hover::before {
+            transform: scale(1.2);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+
+
         /* ========================================
-           PHILOSOPHY SECTION
+           WHY CHOOSE US SECTION
         ======================================== */
-        .philosophy {
+        .why-choose-us {
             padding: var(--space-20) 0;
             background: var(--gray-50);
         }
 
-        .philosophy-content {
+        .why-choose-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-16);
-            align-items: center;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-6);
             margin-top: var(--space-12);
         }
 
-        .philosophy-image img {
-            border-radius: var(--radius-2xl);
-            box-shadow: var(--shadow-2xl);
-            width: 100%;
-            height: auto;
-        }
-
-        .philosophy-points {
-            display: grid;
-            gap: var(--space-6);
-        }
-
-        .philosophy-point {
+        .why-choose-card {
             background: var(--white);
-            padding: var(--space-6);
+            padding: var(--space-8);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-md);
-            transition: all var(--transition-base);
-            border-left: 4px solid var(--ocean-500);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid var(--ocean-500);
+            text-align: center;
         }
 
-        .philosophy-point:hover {
-            transform: translateX(10px);
-            box-shadow: var(--shadow-xl);
+        .why-choose-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(180deg, rgba(43, 108, 176, 0.05), transparent);
+            transition: height 0.4s ease;
         }
 
-        .philosophy-point h4 {
-            color: var(--navy-900);
-            margin-bottom: var(--space-2);
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
+        .why-choose-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(43, 108, 176, 0.2);
+            border-top-color: var(--accent-400);
         }
 
-        .philosophy-point p {
-            color: var(--gray-600);
-            line-height: 1.8;
+        .why-choose-card:hover::before {
+            height: 100%;
         }
 
-        .point-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--ocean-500), var(--ocean-400));
-            border-radius: var(--radius-md);
+        .why-choose-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--ocean-500), var(--accent-400));
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin: 0 auto var(--space-5);
+            font-size: var(--text-3xl);
             color: var(--white);
-            font-size: var(--text-lg);
-            flex-shrink: 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(43, 108, 176, 0.3);
+            position: relative;
+            z-index: 1;
         }
 
+        .why-choose-card:hover .why-choose-icon {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 15px 40px rgba(43, 108, 176, 0.4);
+        }
+
+        .why-choose-card h4 {
+            color: var(--navy-900);
+            margin-bottom: var(--space-3);
+            font-size: var(--text-xl);
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .why-choose-card:hover h4 {
+            color: var(--ocean-500);
+        }
+
+        .why-choose-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            font-size: var(--text-sm);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Partner Cards Grid */
+        .partner-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+
+        .partner-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            box-shadow: 0 4px 20px rgba(11, 37, 65, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(11, 37, 65, 0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .partner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ocean-500), var(--accent-400));
+            transition: height 0.3s ease;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(11, 37, 65, 0.18);
+            border-color: rgba(43, 108, 176, 0.15);
+        }
+
+        .partner-card:hover::before {
+            height: 5px;
+        }
+
+        .partner-card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--ocean-500), var(--accent-400));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-2xl);
+            color: var(--white);
+            margin-bottom: var(--space-4);
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(43, 108, 176, 0.35);
+            position: relative;
+            z-index: 1;
+        }
+
+        .partner-card:hover .partner-card-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 30px rgba(43, 108, 176, 0.45);
+        }
+
+        .partner-card-title {
+            color: var(--navy-900);
+            font-size: var(--text-lg);
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+            line-height: 1.3;
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease;
+        }
+
+        .partner-card:hover .partner-card-title {
+            color: var(--ocean-500);
+        }
+
+        .partner-card-subtitle {
+            color: var(--gray-500);
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--space-4);
+            font-weight: 500;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+            padding-bottom: var(--space-3);
+            border-bottom: 1px dashed rgba(11, 37, 65, 0.1);
+        }
+
+        .partner-card-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .partner-card-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+            color: var(--gray-700);
+            font-size: var(--text-sm);
+            line-height: 1.6;
+            padding: var(--space-2);
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+        }
+
+        .partner-card-list li:hover {
+            background: rgba(8, 145, 178, 0.05);
+            padding-left: var(--space-3);
+        }
+
+        .partner-card-list li .check-icon {
+            color: var(--accent-500);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+            font-size: var(--text-base);
+        }
+
+        .partner-footer {
+            text-align: center;
+            margin-top: var(--space-10);
+            padding: var(--space-8);
+            background: linear-gradient(135deg, var(--navy-900), var(--ocean-600));
+            border-radius: var(--radius-xl);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-footer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(8, 145, 178, 0.1) 0%, transparent 60%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .partner-footer p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .partner-footer p:first-child {
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-3);
+            opacity: 0.9;
+        }
+
+        .partner-footer p:last-child {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--accent-300);
+        }
+
+        @media (max-width: 1024px) {
+            .partner-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .partner-cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
         /* ========================================
-           SERVICES SECTION - IMPROVED DESIGN
+           SERVICES SECTION
         ======================================== */
         .services {
             padding: var(--space-20) 0;
-            background: var(--white);
+            background: linear-gradient(135deg, rgba(11, 37, 65, 0.75), rgba(26, 58, 82, 0.7)), 
+                        url('images/Our Services.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .services .section-header .section-tag {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--accent-300);
+        }
+
+        .services .section-header .section-title {
+            color: var(--white);
         }
 
         .services-tabs {
@@ -644,19 +1114,47 @@
             color: var(--gray-700);
             border-radius: var(--radius-full);
             font-weight: 600;
-            transition: all var(--transition-base);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: linear-gradient(135deg, var(--ocean-500), var(--ocean-400));
+            border-radius: var(--radius-full);
+            transform: translate(-50%, -50%);
+            transition: all 0.4s ease;
+            z-index: 0;
+        }
+
+        .tab-button i, .tab-button span {
+            position: relative;
+            z-index: 1;
         }
 
         .tab-button:hover {
             background: var(--sky-100);
             color: var(--ocean-600);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(43, 108, 176, 0.2);
         }
 
         .tab-button.active {
             background: linear-gradient(135deg, var(--ocean-500), var(--ocean-400));
             color: var(--white);
             border-color: var(--ocean-600);
+            box-shadow: 0 8px 25px rgba(43, 108, 176, 0.3);
+        }
+
+        .tab-button.active:hover {
+            transform: translateY(-3px);
         }
 
         .service-category-section {
@@ -676,13 +1174,15 @@
         }
 
         .service-card {
-            background: var(--gray-50);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: var(--radius-xl);
             padding: var(--space-8);
-            box-shadow: var(--shadow-md);
-            transition: all var(--transition-base);
+            box-shadow: 0 4px 20px rgba(11, 37, 65, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(11, 37, 65, 0.05);
+            backdrop-filter: blur(10px);
         }
 
         .service-card::before {
@@ -692,19 +1192,25 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(90deg, var(--ocean-500), var(--gold-400));
+            background: linear-gradient(90deg, var(--ocean-500), var(--accent-400));
+            transition: height 0.3s ease;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-2xl);
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px -15px rgba(43, 108, 176, 0.25);
             background: var(--white);
+            border-color: rgba(43, 108, 176, 0.12);
+        }
+
+        .service-card:hover::before {
+            height: 6px;
         }
 
         .service-icon {
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, var(--ocean-500), var(--ocean-400));
+            background: linear-gradient(135deg, var(--ocean-500), var(--accent-400));
             border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
@@ -712,46 +1218,138 @@
             font-size: var(--text-3xl);
             color: var(--white);
             margin-bottom: var(--space-6);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(43, 108, 176, 0.35);
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(43, 108, 176, 0.45);
         }
 
         .service-title {
             font-size: var(--text-2xl);
             color: var(--navy-900);
             margin-bottom: var(--space-4);
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card:hover .service-title {
+            color: var(--ocean-500);
         }
 
         .service-list {
             list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            z-index: 1;
         }
 
         .service-list li {
-            padding: var(--space-2) 0;
+            padding: var(--space-2) var(--space-3);
             color: var(--gray-600);
             display: flex;
             align-items: flex-start;
-            gap: var(--space-2);
+            gap: var(--space-3);
             font-size: var(--text-sm);
             line-height: 1.6;
+            transition: all 0.3s ease;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-1);
+        }
+
+        .service-list li:hover {
+            color: var(--navy-900);
+            background: rgba(8, 145, 178, 0.06);
+            padding-left: var(--space-4);
         }
 
         .service-list li::before {
             content: '◆';
-            color: var(--gold-500);
-            font-size: var(--text-sm);
+            color: var(--accent-500);
+            font-size: var(--text-xs);
             flex-shrink: 0;
-            margin-top: 3px;
+            margin-top: 4px;
+            transition: all 0.3s ease;
         }
 
+        .service-list li:hover::before {
+            transform: scale(1.4);
+            color: var(--ocean-500);
+        }
+
+        /* Collapsible service list */
+        .service-list.collapsible li {
+            display: none;
+        }
+
+        .service-list.collapsible li:nth-child(-n+5) {
+            display: flex;
+        }
+
+        .service-list.collapsible.expanded li {
+            display: flex;
+        }
+
+        .show-more-btn {
+            background: linear-gradient(135deg, var(--ocean-500), var(--accent-400));
+            color: var(--white);
+            border: none;
+            padding: var(--space-2) var(--space-5);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: var(--space-5);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            box-shadow: 0 4px 15px rgba(43, 108, 176, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .show-more-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(43, 108, 176, 0.45);
+        }
+
+        .show-more-btn i {
+            transition: transform 0.3s ease;
+            font-size: var(--text-xs);
+        }
+
+        .show-more-btn.expanded i {
+            transform: rotate(180deg);
+        }
+
+
         /* Additional Services Section */
+        .additional-services-section {
+            padding: var(--space-16) 0;
+            background: var(--gray-50);
+        }
+
         .additional-services {
-            background: linear-gradient(135deg, var(--gray-50), var(--sky-100));
+            background: linear-gradient(135deg, rgba(11, 37, 65, 0.85), rgba(26, 58, 82, 0.8)), 
+                        url('images/2151541924.jpg') center/cover;
+            background-attachment: fixed;
             padding: var(--space-12);
             border-radius: var(--radius-2xl);
-            margin-top: var(--space-16);
+            position: relative;
         }
 
         .additional-services h3 {
-            color: var(--navy-900);
+            color: var(--white);
             margin-bottom: var(--space-6);
             text-align: center;
         }
@@ -763,92 +1361,833 @@
         }
 
         .additional-service-card {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.15);
             padding: var(--space-6);
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-            transition: all var(--transition-base);
-        }
-
-        .additional-service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .additional-service-card h4 {
-            color: var(--ocean-600);
-            margin-bottom: var(--space-3);
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-        }
-
-        .additional-service-card p {
-            color: var(--gray-600);
-            font-size: var(--text-sm);
-            line-height: 1.7;
-        }
-
-        /* ========================================
-           CTA SECTION
-        ======================================== */
-        .cta-section {
-            padding: var(--space-20) 0;
-            background: linear-gradient(135deg, var(--ocean-500) 0%, var(--ocean-400) 100%);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             overflow: hidden;
         }
 
-        .cta-background {
+        .additional-service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .additional-service-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(6, 182, 212, 0.4);
+        }
+
+        .additional-service-card:hover::before {
+            left: 100%;
+        }
+
+        .additional-service-card h4 {
+            color: var(--white);
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            transition: all 0.3s ease;
+        }
+
+        .additional-service-card:hover h4 {
+            transform: translateX(5px);
+        }
+
+        .additional-service-card h4 i {
+            transition: all 0.4s ease;
+        }
+
+        .additional-service-card:hover h4 i {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .additional-service-card p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: var(--text-sm);
+            line-height: 1.7;
+            transition: color 0.3s ease;
+        }
+
+        .additional-service-card:hover p {
+            color: var(--white);
+        }
+
+        /* ========================================
+           BROCHURE DOWNLOAD SECTION
+        ======================================== */
+        .brochure-section {
+            padding: var(--space-16) 0;
+            background: linear-gradient(135deg, var(--gray-50), var(--sky-100));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brochure-section::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.1;
-            z-index: 0;
+            background: url('https://images.unsplash.com/photo-1577993132621-4e7e47e6e8c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            opacity: 0.05;
         }
 
-        .cta-background img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .cta-content {
+        .brochure-content {
             position: relative;
             z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-8);
+            flex-wrap: wrap;
+            background: var(--white);
+            padding: var(--space-10);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--gray-200);
+        }
+
+        .brochure-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .brochure-text h3 {
+            color: var(--navy-900);
+            font-size: var(--text-3xl);
+            margin-bottom: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .brochure-text h3 i {
+            color: var(--ocean-500);
+        }
+
+        .brochure-text p {
+            color: var(--gray-600);
+            font-size: var(--text-lg);
+            line-height: 1.8;
+        }
+
+        .brochure-buttons {
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-4) var(--space-8);
+            background: linear-gradient(135deg, var(--ocean-500), var(--accent-400));
+            color: var(--white);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: var(--text-lg);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(43, 108, 176, 0.4);
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn i {
+            font-size: var(--text-xl);
+            transition: transform 0.3s ease;
+        }
+
+        .download-btn:hover i {
+            transform: translateY(3px);
+        }
+
+
+        /* ========================================
+           JOIN US SECTION
+        ======================================== */
+        .join-us-page {
+            padding: 0;
+            background: var(--white);
+        }
+
+        .join-us-hero {
+            background: linear-gradient(135deg, rgba(11, 37, 65, 0.85), rgba(26, 58, 82, 0.8)), 
+                        url('images/Contact us.jpg') center/cover;
+            padding: var(--space-16) 0;
             text-align: center;
             color: var(--white);
         }
 
-        .cta-title {
+        .join-us-hero h1 {
             font-size: var(--text-5xl);
             color: var(--white);
             margin-bottom: var(--space-4);
         }
 
-        .cta-description {
+        .join-us-hero p {
             font-size: var(--text-xl);
             color: var(--sky-100);
-            margin-bottom: var(--space-8);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: var(--space-4);
-            justify-content: center;
-            flex-wrap: wrap;
+        /* Join Us Content Layout */
+        .join-us-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: var(--space-12);
+            padding: var(--space-16) 0;
         }
+
+        /* Contact Info Side */
+        .join-us-info {
+            padding: var(--space-8);
+        }
+
+        .join-us-info h3 {
+            color: var(--navy-900);
+            font-size: var(--text-3xl);
+            margin-bottom: var(--space-4);
+        }
+
+        .join-us-info > p {
+            color: var(--gray-600);
+            margin-bottom: var(--space-8);
+            line-height: 1.8;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+            padding: var(--space-4);
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: var(--sky-100);
+            transform: translateX(5px);
+        }
+
+        .info-item .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--ocean-500), var(--accent-400));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: var(--text-xl);
+            flex-shrink: 0;
+        }
+
+        .info-item .info-content h4 {
+            color: var(--navy-900);
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-1);
+        }
+
+        .info-item .info-content p {
+            color: var(--gray-600);
+            font-size: var(--text-sm);
+        }
+
+        .info-item .info-content a {
+            color: var(--ocean-500);
+            transition: color 0.3s ease;
+        }
+
+        .info-item .info-content a:hover {
+            color: var(--accent-500);
+        }
+
+        /* Join Us Form Side */
+        .join-us-form-container {
+            background: var(--white);
+            padding: var(--space-10);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-2xl);
+            border: 1px solid var(--gray-200);
+        }
+
+        .join-us-form-container h3 {
+            color: var(--navy-900);
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-2);
+        }
+
+        .join-us-form-container > p {
+            color: var(--gray-600);
+            margin-bottom: var(--space-6);
+        }
+
+        .join-us-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+
+        .join-us-form .form-group {
+            margin-bottom: var(--space-4);
+        }
+
+        .join-us-form .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .join-us-form label {
+            display: block;
+            color: var(--gray-700);
+            font-weight: 500;
+            margin-bottom: var(--space-2);
+            font-size: var(--text-sm);
+        }
+
+        .join-us-form input,
+        .join-us-form select,
+        .join-us-form textarea {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            background: var(--gray-50);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            color: var(--gray-800);
+            font-family: inherit;
+            font-size: var(--text-base);
+            transition: all 0.3s ease;
+        }
+
+        .join-us-form input::placeholder,
+        .join-us-form textarea::placeholder {
+            color: var(--gray-400);
+        }
+
+        .join-us-form input:focus,
+        .join-us-form select:focus,
+        .join-us-form textarea:focus {
+            outline: none;
+            border-color: var(--ocean-500);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1);
+        }
+
+        .join-us-form select {
+            cursor: pointer;
+        }
+
+        .join-us-form select option {
+            background: var(--white);
+            color: var(--gray-800);
+        }
+
+        .join-us-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .char-counter {
+            text-align: right;
+            color: var(--gray-500);
+            font-size: var(--text-sm);
+            margin-top: var(--space-2);
+        }
+
+        .join-us-form .submit-btn {
+            width: 100%;
+            padding: var(--space-4);
+            background: linear-gradient(135deg, var(--ocean-500), var(--accent-400));
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: var(--text-lg);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+        }
+
+        .join-us-form .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(43, 108, 176, 0.4);
+        }
+
+        /* Get Quote Button in Header */
+        .nav-quote-btn {
+            padding: var(--space-2) var(--space-5);
+            background: linear-gradient(135deg, var(--ocean-500), var(--accent-400));
+            color: var(--white) !important;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(43, 108, 176, 0.3);
+        }
+
+        .nav-quote-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(43, 108, 176, 0.4);
+        }
+
+        .nav-quote-btn::after {
+            display: none !important;
+        }
+
+        /* Get Quote CTA Button in Join Us Form */
+        .get-quote-cta {
+            margin-top: var(--space-8);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--gray-200);
+            text-align: center;
+        }
+
+        .get-quote-cta p {
+            color: var(--gray-600);
+            margin-bottom: var(--space-4);
+            font-size: var(--text-sm);
+        }
+
+        .get-quote-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            background: linear-gradient(135deg, var(--ocean-500), var(--accent-400));
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: var(--text-base);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .get-quote-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(43, 108, 176, 0.4);
+        }
+
+        /* Quote Modal */
+        .quote-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: var(--space-8);
+        }
+
+        .quote-modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .quote-modal-content {
+            background: var(--white);
+            width: 100%;
+            max-width: 800px;
+            margin: var(--space-8) auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-2xl);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .quote-modal-header {
+            background: linear-gradient(135deg, var(--ocean-500), var(--ocean-600));
+            padding: var(--space-6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quote-modal-header h2 {
+            color: var(--white);
+            font-size: var(--text-2xl);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .quote-modal-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: var(--text-2xl);
+            cursor: pointer;
+            padding: var(--space-2);
+            transition: color var(--transition-base);
+        }
+
+        .quote-modal-close:hover {
+            color: var(--accent-300);
+        }
+
+        .quote-modal-body {
+            padding: var(--space-8);
+            background: var(--white);
+        }
+
+        .quote-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+
+        .quote-form .form-group {
+            margin-bottom: var(--space-4);
+        }
+
+        .quote-form .form-group label {
+            display: block;
+            color: var(--gray-700);
+            font-weight: 500;
+            margin-bottom: var(--space-2);
+            font-size: var(--text-sm);
+        }
+
+        .quote-form .form-group input,
+        .quote-form .form-group textarea,
+        .quote-form .form-group select {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            background: var(--gray-50);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: var(--text-base);
+            transition: all 0.3s ease;
+            color: var(--gray-800);
+        }
+
+        .quote-form .form-group input::placeholder,
+        .quote-form .form-group textarea::placeholder {
+            color: var(--gray-400);
+        }
+
+        .quote-form .form-group input:focus,
+        .quote-form .form-group textarea:focus,
+        .quote-form .form-group select:focus {
+            outline: none;
+            border-color: var(--ocean-500);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1);
+        }
+
+        .quote-form .form-group select {
+            cursor: pointer;
+        }
+
+        .quote-form .form-group select option {
+            background: var(--white);
+            color: var(--gray-800);
+        }
+
+        .quote-form .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .quote-form .submit-btn {
+            width: 100%;
+            padding: var(--space-4);
+            background: linear-gradient(135deg, var(--ocean-500), var(--accent-400));
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: var(--text-lg);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+        }
+
+        .quote-form .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(43, 108, 176, 0.4);
+        }
+
+        .contact-cta {
+            text-align: center;
+            padding: var(--space-12) 0;
+            background: linear-gradient(135deg, var(--gray-50), var(--sky-100));
+        }
+
+        .contact-cta h3 {
+            font-size: var(--text-3xl);
+            color: var(--navy-900);
+            margin-bottom: var(--space-4);
+        }
+
+        .contact-cta p {
+            color: var(--gray-600);
+            margin-bottom: var(--space-6);
+            font-size: var(--text-lg);
+        }
+
+        .get-touch-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-4) var(--space-10);
+            background: linear-gradient(135deg, var(--ocean-500), var(--ocean-400));
+            color: var(--white);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .get-touch-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: linear-gradient(135deg, var(--accent-500), var(--accent-400));
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+            z-index: 0;
+        }
+
+        .get-touch-btn span, .get-touch-btn i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .get-touch-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(43, 108, 176, 0.4);
+        }
+
+        .get-touch-btn:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+
+        .get-touch-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .get-touch-btn:hover i {
+            transform: translateX(5px);
+        }
+
+
+        /* Quote Modal */
+        .quote-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: var(--space-8);
+        }
+
+        .quote-modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .quote-modal-content {
+            background: var(--white);
+            width: 100%;
+            max-width: 800px;
+            margin: var(--space-8) auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .quote-modal-header {
+            background: linear-gradient(135deg, var(--ocean-500), var(--accent-400));
+            padding: var(--space-6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quote-modal-header h2 {
+            color: var(--white);
+            font-size: var(--text-2xl);
+            margin: 0;
+        }
+
+        .quote-modal-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: var(--text-2xl);
+            cursor: pointer;
+            padding: var(--space-2);
+            transition: color var(--transition-base);
+        }
+
+        .quote-modal-close:hover {
+            color: var(--navy-900);
+        }
+
+        .quote-modal-body {
+            padding: var(--space-8);
+        }
+
+        .quote-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+
+        .quote-form .form-group {
+            margin-bottom: var(--space-4);
+        }
+
+        .quote-form .form-group label {
+            display: block;
+            color: var(--gray-700);
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+            font-size: var(--text-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .quote-form .form-group input,
+        .quote-form .form-group textarea,
+        .quote-form .form-group select {
+            width: 100%;
+            padding: var(--space-3);
+            border: 1px solid var(--gray-300);
+            border-radius: 0;
+            font-family: inherit;
+            font-size: var(--text-base);
+            transition: all var(--transition-base);
+            background: var(--gray-50);
+        }
+
+        .quote-form .form-group input:focus,
+        .quote-form .form-group textarea:focus,
+        .quote-form .form-group select:focus {
+            outline: none;
+            border-color: var(--navy-900);
+            background: var(--white);
+        }
+
+        .quote-form .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .quote-form .submit-btn {
+            width: 100%;
+            padding: var(--space-4);
+            background: var(--accent-500);
+            color: var(--white);
+            border: none;
+            font-weight: 600;
+            font-size: var(--text-lg);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .quote-form .submit-btn:hover {
+            background: var(--navy-900);
+        }
+
 
         /* ========================================
            FOOTER
         ======================================== */
         .footer {
-            background: var(--navy-900);
+            background: linear-gradient(135deg, var(--ocean-600), var(--ocean-500));
             color: var(--white);
             padding: var(--space-16) 0 var(--space-8) 0;
         }
@@ -874,7 +2213,7 @@
         }
 
         .footer-description {
-            color: var(--sky-100);
+            color: var(--white);
             line-height: 1.8;
             margin-bottom: var(--space-6);
         }
@@ -887,17 +2226,92 @@
         .social-link {
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.25);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
-            transition: all var(--transition-base);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--white);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s ease;
+            z-index: 0;
+        }
+
+        .social-link:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .social-link i {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
         }
 
         .social-link:hover {
-            background: var(--gold-400);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-link:hover i {
+            transform: scale(1.1);
+            color: var(--ocean-500);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--ocean-500), var(--accent-400));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: var(--text-xl);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            box-shadow: 0 8px 25px rgba(43, 108, 176, 0.4);
+            border: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(43, 108, 176, 0.5);
+        }
+
+        .back-to-top i {
+            transition: transform 0.3s ease;
+        }
+
+        .back-to-top:hover i {
             transform: translateY(-3px);
         }
 
@@ -915,12 +2329,31 @@
         }
 
         .footer-links a {
-            color: var(--sky-100);
-            transition: color var(--transition-base);
+            color: var(--white);
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--white);
+            transition: width 0.3s ease;
         }
 
         .footer-links a:hover {
-            color: var(--gold-400);
+            color: var(--navy-900);
+            transform: translateX(5px);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+            background: var(--navy-900);
         }
 
         .contact-item {
@@ -928,20 +2361,21 @@
             align-items: start;
             gap: var(--space-3);
             margin-bottom: var(--space-4);
-            color: var(--sky-100);
+            color: var(--white);
         }
 
         .contact-item i {
-            color: var(--gold-400);
+            color: var(--navy-900);
             margin-top: 3px;
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
             padding-top: var(--space-8);
             text-align: center;
-            color: var(--sky-200);
+            color: var(--white);
         }
+
 
         /* ========================================
            ANIMATIONS
@@ -982,10 +2416,17 @@
         ======================================== */
         @media (max-width: 1024px) {
             .about-content,
-            .mission-vision-grid,
-            .philosophy-content {
+            .mission-vision-grid {
                 grid-template-columns: 1fr;
                 gap: var(--space-8);
+            }
+
+            .why-choose-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .join-us-content {
+                grid-template-columns: 1fr;
             }
 
             .footer-content {
@@ -1016,48 +2457,162 @@
                 box-shadow: var(--shadow-xl);
                 transform: translateX(-100%);
                 transition: transform var(--transition-base);
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
             }
 
             .nav-menu.active {
                 transform: translateX(0);
             }
 
-            .hero-buttons {
-                flex-direction: column;
-                width: 100%;
+            .mega-dropdown {
+                position: static;
+                padding: var(--space-4);
+                display: none;
+                opacity: 1;
+                visibility: visible;
             }
 
-            .btn {
-                width: 100%;
-                justify-content: center;
+            .nav-item.mobile-open .mega-dropdown {
+                display: block;
+            }
+
+            .mega-dropdown-inner {
+                grid-template-columns: 1fr;
+                gap: var(--space-6);
+            }
+
+            .mega-dropdown-column {
+                padding: 0;
             }
 
             .services-grid {
                 grid-template-columns: 1fr;
             }
 
+            .why-choose-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .join-us-form .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .get-quote-form .form-row {
+                grid-template-columns: 1fr;
+            }
+
             .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .quote-form .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .brochure-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .brochure-buttons {
+                justify-content: center;
+            }
+
+            .slider-arrows {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-info-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
+
     <!-- Header -->
     <header class="header" id="header">
         <div class="container">
             <nav class="nav">
-                 <a href="#home" class="logo">
+                <a href="#home" class="logo">
                     <img src="images/logo.jpg" alt="VOLAS NexGen Marine Logo" style="border-radius: 50px;">
                     <span>VOLAS NexGen Marine</span>
                 </a>
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="#home" class="nav-link active">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#mission-vision" class="nav-link">Mission & Vision</a></li>
-                    <li><a href="#philosophy" class="nav-link">Philosophy</a></li>
-                    <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="#contact" class="cta-button">Get Quote</a></li>
+                    <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#mission-vision" class="nav-link">Mission & Vision</a></li>
+                    <li class="nav-item"><a href="#philosophy" class="nav-link">Why Partner with Us</a></li>
+                    <li class="nav-item">
+                        <a href="#services" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+                        <!-- Mega Dropdown -->
+                        <div class="mega-dropdown">
+                            <div class="mega-dropdown-inner">
+                                <div class="mega-dropdown-column">
+                                    <h4><i class="fas fa-clipboard-check"></i> Audits</h4>
+                                    <ul>
+                                        <li><a href="#services" data-tab="audits">Navigational Audit – On Site</a></li>
+                                        <li><a href="#services" data-tab="audits">Navigational Audit – Remote by VDR</a></li>
+                                        <li><a href="#services" data-tab="audits">Mooring Audit</a></li>
+                                        <li><a href="#services" data-tab="audits">Cargo Audit</a></li>
+                                        <li><a href="#services" data-tab="audits">Engineering Audit</a></li>
+                                        <li><a href="#services" data-tab="audits">Environmental Audit</a></li>
+                                        <li><a href="#services" data-tab="audits">LNG Bunkering Audit</a></li>
+                                        <li><a href="#services" data-tab="audits">ISM / ISPS / MLC Audit</a></li>
+                                        <li><a href="#services" data-tab="audits">Energy Audit</a></li>
+                                        <li><a href="#services" data-tab="audits">Cyber Security Audit</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-dropdown-column">
+                                    <h4><i class="fas fa-search"></i> Inspections</h4>
+                                    <ul>
+                                        <li><a href="#services" data-tab="inspections">Pre-OCIMF SIRE 2.0</a></li>
+                                        <li><a href="#services" data-tab="inspections">Pre-AMSA Inspection</a></li>
+                                        <li><a href="#services" data-tab="inspections">Pre-USCG Inspection</a></li>
+                                        <li><a href="#services" data-tab="inspections">Pre-Purchase Inspection</a></li>
+                                        <li><a href="#services" data-tab="inspections">Pre-PSC Inspections</a></li>
+                                        <li><a href="#services" data-tab="inspections">Pre-Flag State Inspection</a></li>
+                                        <li><a href="#services" data-tab="inspections">Pre-RightShip Inspection</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-dropdown-column">
+                                    <h4><i class="fas fa-compass"></i> Surveys</h4>
+                                    <ul>
+                                        <li><a href="#services" data-tab="surveys">Condition Surveys</a></li>
+                                        <li><a href="#services" data-tab="surveys">Bunker Survey</a></li>
+                                        <li><a href="#services" data-tab="surveys">Draft Survey</a></li>
+                                        <li><a href="#services" data-tab="surveys">Cargo Survey</a></li>
+                                        <li><a href="#services" data-tab="surveys">IHM Survey</a></li>
+                                        <li><a href="#services" data-tab="surveys">On-Hire / Off-Hire Surveys</a></li>
+                                        <li><a href="#services" data-tab="surveys">Marine Warranty Surveys</a></li>
+                                        <li><a href="#services" data-tab="surveys">P&I Surveys</a></li>
+                                        <li><a href="#services" data-tab="surveys">Hull Thickness Survey</a></li>
+                                        <li><a href="#services" data-tab="surveys">Fire / Collision Damage Survey</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-dropdown-column">
+                                    <h4><i class="fas fa-boxes"></i> Super-Cargo</h4>
+                                    <ul>
+                                        <li><a href="#services" data-tab="cargo">General Cargo Break Bulk</a></li>
+                                        <li><a href="#services" data-tab="cargo">Oil Tankers DPP-CPP Conversions</a></li>
+                                        <li><a href="#services" data-tab="cargo">Oil/Chemical Tank Cleanings</a></li>
+                                        <li><a href="#services" data-tab="cargo">Bulk Carrier Hold Cleanings</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="#brochure" class="nav-link">Brochure</a></li>
+                    <li class="nav-item"><a href="#join-us" class="nav-link">Join Us</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link nav-quote-btn" id="navGetQuote">Get Quote</a></li>
                 </ul>
                 <div class="menu-toggle" id="menuToggle">
                     <span></span>
@@ -1068,78 +2623,132 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+
+    <!-- Hero Slider Section -->
     <section class="hero" id="home">
-        <div class="hero-background">
-            <img src="images/Home.jpg" alt="Maritime Operations">
-        </div>
-        <div class="hero-shape hero-shape-1"></div>
-        <div class="hero-shape hero-shape-2"></div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">VOLAS NexGen Marine</h1>
-                <p class="hero-subtitle">Services with Cushion of a Palm</p>
-                <p style="font-size: var(--text-lg); color: var(--sky-100); margin-bottom: var(--space-8);">
-                    Leading global provider of independent ship management services, maritime audits, vessel surveys, and specialized marine services.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#services" class="btn btn-primary">
-                        <i class="fas fa-ship"></i>
-                        Explore Services
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-phone"></i>
-                        Contact Us
-                    </a>
+        <div class="hero-slider">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <div class="slide-background">
+                    <img src="images/Home1.jpg" alt="Maritime Operations">
+                </div>
+                <div class="container">
+                    <div class="slide-content">
+                        <h1>VOLAS NexGen Marine</h1>
+                        <h2>Services with Cushion of a Palm</h2>
+                        <p>Leading global provider of independent ship management services, maritime audits, vessel surveys, and specialized marine services.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="slide-background">
+                    <img src="images/Home2.jpg" alt="About VOLAS">
+                </div>
+                <div class="container">
+                    <div class="slide-content">
+                        <h1>Maritime Excellence</h1>
+                        <h2>Trusted Partner in Ship Management</h2>
+                        <p>We bridge the timeless traditions of seamanship with the transformative power of digital innovation, creating a service that is both reliable and forward thinking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="slide-background">
+                    <img src="images/safety1536x1024.jpg" alt="Our Mission">
+                </div>
+                <div class="container">
+                    <div class="slide-content">
+                        <h1>Safety First</h1>
+                        <h2>Comprehensive Maritime Audits & Surveys</h2>
+                        <p>Our operational foundation rests upon an absolute commitment to Safety, Performance, and Crew Well-being.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <div class="slide-background">
+                    <img src="images/globalreach.png" alt="Our Philosophy">
+                </div>
+                <div class="container">
+                    <div class="slide-content">
+                        <h1>Global Reach</h1>
+                        <h2>24/7 Maritime Support Worldwide</h2>
+                        <p>Expert team ready to assist you with comprehensive maritime solutions tailored to your needs across India, Singapore, Sri Lanka, Maldives and Mauritius.</p>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Slider Navigation -->
+        <div class="slider-nav">
+            <div class="slider-dot active" data-slide="0"></div>
+            <div class="slider-dot" data-slide="1"></div>
+            <div class="slider-dot" data-slide="2"></div>
+            <div class="slider-dot" data-slide="3"></div>
+        </div>
+
+        <!-- Slider Arrows -->
+        <div class="slider-arrows">
+            <div class="slider-arrow prev-arrow">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="slider-arrow next-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
     </section>
+
 
     <!-- About Section -->
     <section class="about section" id="about">
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-tag">About VOLAS</span>
-                <h2 class="section-title">Leading Maritime Excellence</h2>
-                <p class="section-description">
-                    We are committed to doing the right things the right way, always challenging ourselves 
-                    to shape a better and sustainable maritime future.
-                </p>
+                <h2 class="section-title">About Us.</h2>
             </div>
             
             <div class="about-content">
                 <div class="about-image reveal">
-                    <img src="images/About_Us.jpg" alt="VOLAS NexGen Marine Services">
+                    <img src="images/about us 2.jpg" alt="VOLAS NexGen Marine Services">
                 </div>
                 <div class="about-text reveal">
-                    <h3 style="margin-bottom: var(--space-4); color: var(--navy-900);">Introduction</h3>
                     <p>
-                        VOLAS NexGen Marine is a leading global provider of independent ship management services, 
-                        with a reputation for excellence and innovation driven by our passion for seafaring and for ships.
+                        <strong style="color: var(--navy-900);">VOLAS NexGen Marine</strong> is a premier global provider of specialized maritime technical services, delivering high-impact audits, inspections, surveys, and consultancy solutions across all vessel types. Our services are precisely tailored to the operational, commercial, and compliance needs of vessel owners, operators, and charterers worldwide.
                     </p>
                     <p>
-                        We are committed to doing the right things the right way, always challenging ourselves to 
-                        shape a better and sustainable maritime future.
+                        We go beyond traditional audits and surveys. Our expertise extends to in-depth deficiency analysis, practical corrective action planning, and hands-on close-out support—protecting vessel integrity, strengthening compliance, and optimizing operational performance.
                     </p>
                     <p>
-                        We continually seek to perform at the highest standards of safety, performance and crew 
-                        wellbeing in our industry, values that are core to who we are. Our numbers reflect why 
-                        clients trust us with their assets.
+                        What sets us apart is our owner-aligned, results-driven approach.<br>
+                        We don't simply list findings. We prioritize risks, recommend realistic and cost-effective corrective actions, and actively support closure—helping clients avoid repeat observations, operational delays, off-hire exposure, and unnecessary costs through practical, risk-based solutions.
+                    </p>
+                    <p>
+                        Our work is guided by a single, uncompromising principle:<br>
+                        <strong style="color: var(--navy-900);">Doing the right things, the right way.</strong><br>
+                        This is more than a statement—it is the standard that drives every decision we make, from the bridge to the boardroom. It pushes us to challenge convention, eliminate inefficiencies, and deliver smarter solutions that advance a safer, more efficient, and more sustainable maritime industry.
+                    </p>
+                    <p>
+                        Our strength lies in people, discipline, and responsiveness. Assignments are led by seasoned professionals—including Master Mariners and Chief Engineers—supported by structured methodologies and consistent documentation standards. With global coverage, 24/7 availability, and rapid report turnaround, VOLAS NexGen Marine delivers clear, decision-ready insights when they matter most.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
+
     <!-- Mission & Vision Section -->
     <section class="mission-vision section" id="mission-vision">
         <div class="mission-vision-background">
-            <img src="images/Mission_and_Vision_Pics.jpg" alt="Mission and Vision Background">
+            <img src="images/mission.jpg" alt="Mission and Vision Background">
         </div>
         <div class="container">
             <div class="section-header">
-                <span class="section-tag" style="background: rgba(255,255,255,0.1); color: var(--gold-400);">Our Direction</span>
+                <span class="section-tag" style="background: rgba(255,255,255,0.1); color: var(--accent-400);">Our Direction</span>
                 <h2 class="section-title" style="color: var(--white);">Mission & Vision</h2>
                 <p class="section-description" style="color: var(--sky-100);">
                     Driving excellence in maritime services with innovation and commitment
@@ -1152,10 +2761,11 @@
                         <i class="fas fa-bullseye"></i>
                     </div>
                     <h3 class="card-title">Mission</h3>
-                    <p class="card-description">
-                        VOLAS NexGen Marine aims to excel in shipping, trading & services by remaining transparent, 
-                        focused and technologically advanced. To be the most reliable and trustworthy partner for our clients.
-                    </p>
+                    <ul class="vision-points">
+                        <li>
+                            To deliver a comprehensive suite of integrated shipping, trading, and maritime services, operating with unwavering transparency and a singular focus on achieving our clients' strategic and commercial objectives. We achieve this by harnessing advanced technology and data-driven insights to optimize performance, mitigate risk, and ensure operational efficiency across every managed asset. Our ultimate purpose is to build enduring partnerships founded on trust, reliability, and mutual success, positioning ourselves as the cornerstone of our clients' maritime operations.
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="vision-card reveal">
@@ -1165,11 +2775,7 @@
                     <h3 class="card-title">Vision</h3>
                     <ul class="vision-points">
                         <li>
-                            To be a leading shipping, trading & services provider to the maritime industry with 
-                            absolute regard to safety and the environment.
-                        </li>
-                        <li>
-                            Keep abreast with ever evolving technology and offer modern and dynamic maritime solutions.
+                            To be the global leader in specialized maritime technical services, empowering shipowners, charterers, and managers with cutting-edge audits, inspections, and surveys that drive vessel integrity, operational excellence, and sustainable success. By pioneering transparent, technology-led solutions and expert guidance, we envision a maritime industry transformed—more efficient, cost effective, and resilient—where our clients thrive through real-time insights, risk optimized decisions, and enduring partnerships that shape the future of shipping.
                         </li>
                     </ul>
                 </div>
@@ -1177,358 +2783,540 @@
         </div>
     </section>
 
-    <!-- Philosophy Section -->
-    <section class="philosophy section" id="philosophy">
+
+    <!-- Our Philosophy Section -->
+    <section class="section" id="our-philosophy" style="padding: var(--space-16) 0; background: linear-gradient(135deg, rgba(11, 37, 65, 0.85), rgba(26, 58, 82, 0.8)), url('images/vision.jpg') center/cover; background-attachment: fixed;">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-tag">Our Philosophy</span>
-                <h2 class="section-title">What Sets Us Apart</h2>
-                <p class="section-description">
-                    Our commitment to excellence and innovation drives everything we do
-                </p>
+                <span class="section-tag" style="background: rgba(255,255,255,0.1); color: var(--accent-400);">Our Philosophy</span>
+                <h2 class="section-title" style="color: var(--white);">Our Philosophy</h2>
             </div>
-
-            <div class="philosophy-content">
-                <div class="philosophy-image reveal">
-                    <img src="images/Our_Philosophy.jpg" alt="Our Philosophy">
-                </div>
-                
-                <div class="philosophy-points">
-                    <div class="philosophy-point reveal">
-                        <h4>
-                            <span class="point-icon"><i class="fas fa-users"></i></span>
-                            Crew Welfare & Safety Culture
-                        </h4>
-                        <p>
-                            Our emphasis on crew welfare and safety culture sets us apart. We invest heavily in 
-                            training and technology to ensure our seafarers thrive, which keeps operations smooth 
-                            and clients satisfied.
-                        </p>
-                    </div>
-
-                    <div class="philosophy-point reveal">
-                        <h4>
-                            <span class="point-icon"><i class="fas fa-handshake"></i></span>
-                            Financial Strength
-                        </h4>
-                        <p>
-                            We have a solid financial position that makes us a strong ally to our customers, 
-                            partners, and stakeholders.
-                        </p>
-                    </div>
-
-                    <div class="philosophy-point reveal">
-                        <h4>
-                            <span class="point-icon"><i class="fas fa-trophy"></i></span>
-                            Excellence Across All Vessels
-                        </h4>
-                        <p>
-                            We bring the knowledge and high expectations of top-notch projects on sophisticated 
-                            assets to all segments and all types of vessels.
-                        </p>
-                    </div>
-                </div>
+            <div class="reveal" style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <p style="font-size: var(--text-lg); color: var(--sky-100); line-height: 1.9;">
+                    At VOLAS NexGen Marine, we don't just inspect vessels; we elevate them. We believe that audits and surveys are not merely checkboxes, but strategic opportunities to unlock profitability and safeguard integrity. By challenging industry norms with elite expertise and proactive solutions, we are pioneering a maritime future that is smarter, leaner, and greener—doing the right thing, the right way, from the bridge to the boardroom.
+                </p>
             </div>
         </div>
     </section>
+
+
+    <!-- Why Partner with Us Section -->
+    <section class="why-choose-us section" id="philosophy" style="background: url('images/Why Partner with us.jpg') center/cover no-repeat fixed; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(240, 249, 255, 0.88));"></div>
+        <div class="container" style="position: relative; z-index: 1;">
+            <div class="section-header reveal">
+                <span class="section-tag">Why Partner with Us</span>
+                <h2 class="section-title">Why Partner with Us?</h2>
+            </div>
+
+            <div class="partner-cards-grid reveal">
+                <!-- Card 1 -->
+                <div class="partner-card">
+                    <div class="partner-card-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h4 class="partner-card-title">ONE GLOBAL PARTNER. ZERO COMPROMISE</h4>
+                    <p class="partner-card-subtitle">Your worldwide operations deserve a single standard of excellence</p>
+                    <ul class="partner-card-list">
+                        <li><span class="check-icon">✓</span> Total Global Control—From Singapore to Savannah, Rotterdam to Rio, unified network delivers seamless inspections</li>
+                        <li><span class="check-icon">✓</span> Eliminate operational fragmentation with one point of contact for all your fleet's compliance needs</li>
+                        <li><span class="check-icon">✓</span> Consistency that builds trust—investors and charterers value our globally uniform audit methodology</li>
+                        <li><span class="check-icon">✓</span> Where Maritime Excellence Meets Uncompromising Results</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="partner-card">
+                    <div class="partner-card-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h4 class="partner-card-title">ELITE EXPERTISE THAT PRESERVES YOUR ASSETS</h4>
+                    <p class="partner-card-subtitle">When your vessel's value hangs in the balance, generalists need not apply</p>
+                    <ul class="partner-card-list">
+                        <li><span class="check-icon">✓</span> Led by seasoned Master Mariners and Chief Engineers with expert shore-based experience</li>
+                        <li><span class="check-icon">✓</span> Real-world operational experience delivers insights desk-bound auditors cannot see</li>
+                        <li><span class="check-icon">✓</span> Protection that pays dividends—we uncover, advise, and protect with uncompromising precision</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="partner-card">
+                    <div class="partner-card-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4 class="partner-card-title">RAPID RESPONSE. REAL-WORLD RESULTS</h4>
+                    <p class="partner-card-subtitle">Your vessel doesn't wait—neither do we</p>
+                    <ul class="partner-card-list">
+                        <li><span class="check-icon">✓</span> On-site within 24 hours in 92% of global ports—no costly delays</li>
+                        <li><span class="check-icon">✓</span> 24/7 emergency response capability cuts average off-hire time by 37%</li>
+                        <li><span class="check-icon">✓</span> Digital triage system addresses critical findings before your next port call</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="partner-card">
+                    <div class="partner-card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 class="partner-card-title">STRATEGIC INTELLIGENCE—NOT PAPERWEIGHT REPORTS</h4>
+                    <p class="partner-card-subtitle">Forget static findings. We deliver profit-driving insights</p>
+                    <ul class="partner-card-list">
+                        <li><span class="check-icon">✓</span> Predictive risk analytics identify emerging issues before they trigger detentions</li>
+                        <li><span class="check-icon">✓</span> Commercial intelligence transforms audit data into chartering advantages</li>
+                        <li><span class="check-icon">✓</span> Actionable roadmaps with turnkey solutions and ROI timelines</li>
+                    </ul>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="partner-card">
+                    <div class="partner-card-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4 class="partner-card-title">DEDICATED SHORE-BASED SUPPORT</h4>
+                    <p class="partner-card-subtitle">Your inspection never ends when the auditor leaves the vessel</p>
+                    <ul class="partner-card-list">
+                        <li><span class="check-icon">✓</span> Dedicated technical team provides continuous oversight from audit to implementation</li>
+                        <li><span class="check-icon">✓</span> Seamless handoff protocol ensures critical findings receive immediate attention</li>
+                        <li><span class="check-icon">✓</span> Long-term performance tracking demonstrates tangible fleet improvement</li>
+                    </ul>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="partner-card">
+                    <div class="partner-card-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h4 class="partner-card-title">VALUE-DRIVEN EFFICIENCY</h4>
+                    <p class="partner-card-subtitle">We don't sell hours—we deliver returns</p>
+                    <ul class="partner-card-list">
+                        <li><span class="check-icon">✓</span> Reduced off-hire and optimized maintenance planning</li>
+                        <li><span class="check-icon">✓</span> Commercially intelligent solutions balancing compliance with operational realities</li>
+                        <li><span class="check-icon">✓</span> Average 22% decrease in annual compliance-related expenses</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Text -->
+            <div class="partner-footer reveal">
+                <p>Join the industry leaders who've turned audit from cost center to strategic asset and from Audit Anxiety to Audit advantage.</p>
+                <p>WE DON'T INSPECT. WE ELEVATE.</p>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Services Section -->
     <section class="services section" id="services">
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-tag">Our Services</span>
-                <h2 class="section-title">Comprehensive Maritime Solutions</h2>
-                <p class="section-description">
-                    Professional maritime services tailored to meet all your vessel requirements
-                </p>
+                <h2 class="section-title">Our Services.</h2>
             </div>
 
-            <!-- Services Tabs -->
-            <div class="services-tabs">
-                <button class="tab-button active" data-tab="audits">
-                    <i class="fas fa-clipboard-check"></i> Audits
-                </button>
-                <button class="tab-button" data-tab="inspections">
-                    <i class="fas fa-search"></i> Inspections
-                </button>
-                <button class="tab-button" data-tab="surveys">
-                    <i class="fas fa-compass"></i> Surveys
-                </button>
-                <button class="tab-button" data-tab="cargo">
-                    <i class="fas fa-boxes"></i> Super-Cargo
-                </button>
-            </div>
-
-            <!-- Audits Tab -->
-            <div class="service-category-section active" id="audits">
-                <div class="services-grid">
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <i class="fas fa-ship"></i>
-                        </div>
-                        <h3 class="service-title">Navigational Audits</h3>
-                        <ul class="service-list">
-                            <li>Navigational Audit – On Site</li>
-                            <li>Navigational Audit – Remote by VDR Analysis</li>
-                            <li>Mooring Audit</li>
-                            <li>Comprehensive navigation system evaluation</li>
-                        </ul>
+            <!-- Services Cards Grid -->
+            <div class="services-grid reveal">
+                <!-- Audits Card -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-clipboard-check"></i>
                     </div>
-
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <i class="fas fa-cogs"></i>
-                        </div>
-                        <h3 class="service-title">Technical Audits</h3>
-                        <ul class="service-list">
-                            <li>Cargo Audit</li>
-                            <li>Engineering Audit</li>
-                            <li>Environmental Audit</li>
-                            <li>Energy Audit</li>
-                        </ul>
-                    </div>
-
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3 class="service-title">Safety & Security</h3>
-                        <ul class="service-list">
-                            <li>ISM / ISPS / MLC Audit</li>
-                            <li>Cyber Security Audit</li>
-                            <li>LNG Bunkering Audit</li>
-                            <li>Comprehensive safety management systems</li>
-                        </ul>
-                    </div>
+                    <h3 class="service-title">Audits</h3>
+                    <ul class="service-list collapsible">
+                        <li>Navigational Audit – On Site</li>
+                        <li>Navigational Audit – Remote by VDR Analysis</li>
+                        <li>Mooring Audit</li>
+                        <li>Cargo Audit</li>
+                        <li>Engineering Audit</li>
+                        <li>Environmental Audit</li>
+                        <li>LNG Bunkering Audit</li>
+                        <li>ISM / ISPS / MLC Audit</li>
+                        <li>Energy Audit</li>
+                        <li>Cyber Security Audit</li>
+                    </ul>
+                    <button class="show-more-btn" onclick="toggleServiceList(this)">
+                        <span>Show More</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
                 </div>
-            </div>
 
-            <!-- Inspections Tab -->
-            <div class="service-category-section" id="inspections">
-                <div class="services-grid">
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                        <h3 class="service-title">Pre-Audit Inspections</h3>
-                        <ul class="service-list">
-                            <li>Pre-OCIMF SIRE 2.0</li>
-                            <li>Pre-AMSA Inspection</li>
-                            <li>Pre-USCG Inspection</li>
-                            <li>Pre-RightShip Inspection</li>
-                        </ul>
+                <!-- Inspections Card -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
                     </div>
-
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <h3 class="service-title">Pre-Survey Inspections</h3>
-                        <ul class="service-list">
-                            <li>Pre-Purchase Inspection</li>
-                            <li>Pre-PSC Inspections</li>
-                            <li>Pre-Flag State Inspection</li>
-                            <li>Comprehensive vessel evaluation</li>
-                        </ul>
-                    </div>
-
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <i class="fas fa-clipboard-list"></i>
-                        </div>
-                        <h3 class="service-title">Detailed Reports</h3>
-                        <ul class="service-list">
-                            <li>Expert evaluation of deficiencies</li>
-                            <li>Corrective action recommendations</li>
-                            <li>Detailed photo documentation</li>
-                            <li>Class & Flag coordination</li>
-                        </ul>
-                    </div>
+                    <h3 class="service-title">Inspections</h3>
+                    <ul class="service-list collapsible">
+                        <li>Pre-OCIMF SIRE 2.0</li>
+                        <li>Pre-AMSA Inspection</li>
+                        <li>Pre-USCG Inspection</li>
+                        <li>Pre-Purchase Inspection</li>
+                        <li>Pre-PSC Inspections</li>
+                        <li>Pre-Flag State Inspection</li>
+                        <li>Pre-RightShip Inspection</li>
+                    </ul>
+                    <button class="show-more-btn" onclick="toggleServiceList(this)">
+                        <span>Show More</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
                 </div>
-            </div>
 
-            <!-- Surveys Tab -->
-            <div class="service-category-section" id="surveys">
-                <div class="services-grid">
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <i class="fas fa-ruler-combined"></i>
-                        </div>
-                        <h3 class="service-title">Cargo & Draft Surveys</h3>
-                        <ul class="service-list">
-                            <li>Condition Surveys</li>
-                            <li>Bunker Survey</li>
-                            <li>Draft Survey</li>
-                            <li>Cargo Survey</li>
-                        </ul>
+                <!-- Surveys Card -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-compass"></i>
                     </div>
-
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <h3 class="service-title">Structural Surveys</h3>
-                        <ul class="service-list">
-                            <li>Hull Thickness Measurement Survey</li>
-                            <li>Hatch Cover Watertightness Survey</li>
-                            <li>Oil/Chemical Tankers Wall Wash Test</li>
-                            <li>Fire Damage Survey</li>
-                            <li>Collision Damage Survey</li>
-                        </ul>
-                    </div>
-
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <i class="fas fa-anchor"></i>
-                        </div>
-                        <h3 class="service-title">Specialized Surveys</h3>
-                        <ul class="service-list">
-                            <li>On-Hire / Off-Hire Surveys</li>
-                            <li>Marine Warranty Surveys</li>
-                            <li>P&I Surveys</li>
-                            <li>Yard (Newbuild / Repair) Survey</li>
-                            <li>Lay Up Survey</li>
-                            <li>IHM (Inventory of Hazardous Materials) Survey</li>
-                        </ul>
-                    </div>
+                    <h3 class="service-title">Surveys</h3>
+                    <ul class="service-list collapsible">
+                        <li>Condition Surveys</li>
+                        <li>Bunker Survey</li>
+                        <li>Draft Survey</li>
+                        <li>Cargo Survey</li>
+                        <li>IHM (Inventory of Hazardous Materials) Survey</li>
+                        <li>Damage Survey</li>
+                        <li>On-Hire / Off-Hire Surveys</li>
+                        <li>Marine Warranty Surveys</li>
+                        <li>P&I Surveys</li>
+                        <li>Hull Thickness Measurement Survey</li>
+                        <li>Fire Damage Survey</li>
+                        <li>Collision Damage Survey</li>
+                        <li>Yard (Newbuild / Repair) Survey</li>
+                        <li>Lay Up Survey</li>
+                        <li>Hatch Cover Watertightness Survey</li>
+                        <li>Oil / Chemical Tankers Wall Wash Test Survey</li>
+                        <li>Cargo Hold Survey</li>
+                        <li>H&M Insurance Claims Survey</li>
+                    </ul>
+                    <button class="show-more-btn" onclick="toggleServiceList(this)">
+                        <span>Show More</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
                 </div>
-            </div>
 
-            <!-- Super-Cargo Tab -->
-            <div class="service-category-section" id="cargo">
-                <div class="services-grid">
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <i class="fas fa-box-open"></i>
-                        </div>
-                        <h3 class="service-title">Cargo Operations</h3>
-                        <ul class="service-list">
-                            <li>General Cargo Break Bulk Operations</li>
-                            <li>Load and Discharge Attendance</li>
-                            <li>Pre-stowage Planning</li>
-                            <li>On-site Supervision</li>
-                        </ul>
+                <!-- Super-Cargo Attendance Card -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-boxes"></i>
                     </div>
-
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <i class="fas fa-oil-can"></i>
-                        </div>
-                        <h3 class="service-title">Tanker Operations</h3>
-                        <ul class="service-list">
-                            <li>Oil Tankers DPP-CPP Conversions</li>
-                            <li>Oil/Chemical Tankers Tank Cleanings</li>
-                            <li>Tank integrity verification</li>
-                            <li>Specialized tanker operations</li>
-                        </ul>
-                    </div>
-
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <i class="fas fa-warehouse"></i>
-                        </div>
-                        <h3 class="service-title">Bulk Carrier Services</h3>
-                        <ul class="service-list">
-                            <li>Bulk Carrier Cargo Hold Cleanings</li>
-                            <li>Hold preparation and inspection</li>
-                            <li>Cargo compatibility assessments</li>
-                            <li>Quality control and documentation</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Additional Services -->
-            <div class="additional-services reveal">
-                <h3>Additional Services & Consultancy</h3>
-                <div class="additional-services-grid">
-                    <div class="additional-service-card">
-                        <h4><i class="fas fa-ship" style="color: var(--ocean-500);"></i> Ship Sale & Purchase</h4>
-                        <p>Comprehensive S&P support including pre-purchase inspections, due diligence, delivery logistics, and post-sale services worldwide.</p>
-                    </div>
-
-                    <div class="additional-service-card">
-                        <h4><i class="fas fa-hard-hat" style="color: var(--gold-500);"></i> New Building Supervision</h4>
-                        <p>End-to-end oversight from shipyard evaluation through testing and commissioning. Steel cutting to delivery monitoring.</p>
-                    </div>
-
-                    <div class="additional-service-card">
-                        <h4><i class="fas fa-handshake" style="color: var(--ocean-500);"></i> Agency Liaisoning</h4>
-                        <p>24/7 agency services across India, Singapore, Sri Lanka, Maldives and Mauritius for all vessel requirements.</p>
-                    </div>
-
-                    <div class="additional-service-card">
-                        <h4><i class="fas fa-wrench" style="color: var(--gold-500);"></i> Dry Dock Services</h4>
-                        <p>Complete dry dock management including planning, coordination with OEMs, supervision, and quality assurance.</p>
-                    </div>
-
-                    <div class="additional-service-card">
-                        <h4><i class="fas fa-eye" style="color: var(--ocean-500);"></i> On-Site Monitoring</h4>
-                        <p>Experienced captains and engineers for supply chain oversight, technical consultation, and operational support.</p>
-                    </div>
-
-                    <div class="additional-service-card">
-                        <h4><i class="fas fa-certificate" style="color: var(--gold-500);"></i> Certification Support</h4>
-                        <p>Coordination with Class and Flag surveyors to obtain relevant certifications and regulatory approvals.</p>
-                    </div>
+                    <h3 class="service-title">Super-Cargo Attendance</h3>
+                    <ul class="service-list">
+                        <li>General Cargo Break Bulk</li>
+                        <li>Oil Tankers DPP-CPP Conversions</li>
+                        <li>Oil/Chemical Tankers Tank Cleanings</li>
+                        <li>Bulk Carrier Cargo Hold Cleanings</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section" id="contact">
-        <div class="cta-background">
-            <img src="images/Last.jpg" alt="Contact VOLAS NexGen Marine">
-        </div>
+    <!-- Additional Services Section -->
+    <section class="additional-services-section section">
         <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">Ready to Get Started?</h2>
-                <p class="cta-description">
-                    Partner with VOLAS NexGen Marine for comprehensive maritime solutions tailored to your needs. 
-                    Our expert team is ready to assist you 24/7.
-                </p>
-                <div class="cta-buttons">
-                    <a href="tel:+919939608110" class="btn btn-primary">
-                        <i class="fas fa-phone"></i>
-                        Call: +91 99396 08110
-                    </a>
-                    <a href="mailto:info@volasnexgenmarine.com" class="btn btn-secondary">
-                        <i class="fas fa-envelope"></i>
-                        Email Us
+            <div class="additional-services reveal">
+                <h3>In addition to above, we also provide services as</h3>
+                <div class="additional-services-grid">
+                    <!-- Additional Services List Card -->
+                    <div class="additional-service-card" style="grid-column: 1 / -1;">
+                        <ul style="padding-left: var(--space-6); color: var(--white); font-weight: 500; columns: 2; column-gap: var(--space-8); list-style: disc;">
+                            <li style="margin-bottom: var(--space-2);">Coordinate with Class, Flag surveyors to obtain relevant certifications and approvals</li>
+                            <li style="margin-bottom: var(--space-2);">Pre-Rightship preparation</li>
+                            <li style="margin-bottom: var(--space-2);">Onboard training</li>
+                            <li style="margin-bottom: var(--space-2);">Risk assessment</li>
+                            <li style="margin-bottom: var(--space-2);">Accident / Casualty Investigation</li>
+                            <li style="margin-bottom: var(--space-2);">Warranty claim Survey</li>
+                            <li style="margin-bottom: var(--space-2);">Cargo loading / Discharging optimization</li>
+                            <li style="margin-bottom: var(--space-2);">Cargo care during voyage</li>
+                            <li style="margin-bottom: var(--space-2);">Delivery & Re-delivery inspection</li>
+                            <li style="margin-bottom: var(--space-2);">Change of Ownership & Technical management</li>
+                        </ul>
+                    </div>
+
+                    <!-- New Building Supervision Card -->
+                    <div class="additional-service-card">
+                        <h4 style="text-decoration: underline;"><i class="fas fa-hard-hat" style="color: var(--accent-300);"></i> New Building Supervision</h4>
+                        <ul style="list-style: disc; padding-left: var(--space-5); color: var(--white); margin-top: var(--space-3);">
+                            <li style="margin-bottom: var(--space-2);">Supervision & consultancy</li>
+                            <li style="margin-bottom: var(--space-2);">Specifications of plans and to negotiate cost changes as agreed with Owners</li>
+                        </ul>
+                    </div>
+
+                    <!-- Ship Sale & Purchase Card -->
+                    <div class="additional-service-card">
+                        <h4 style="text-decoration: underline;"><i class="fas fa-ship" style="color: var(--accent-300);"></i> Ship Sale & Purchase</h4>
+                        <ul style="list-style: disc; padding-left: var(--space-5); color: var(--white); margin-top: var(--space-3);">
+                            <li style="margin-bottom: var(--space-2);">Identify vessel through Pre-Purchase Inspection, Due Diligence & Liability search worldwide</li>
+                            <li style="margin-bottom: var(--space-2);">Obtain Authoritative approvals and plan Delivery procedures & logistics</li>
+                            <li style="margin-bottom: var(--space-2);">Equip vessel for delivery voyage by recruiting Officers & Crew</li>
+                            <li style="margin-bottom: var(--space-2);">Oversee Classification Society Surveys, Flag Change, Name Change</li>
+                            <li style="margin-bottom: var(--space-2);">Ensure Statutory & Class Certification and P&I, H&M insurance placements</li>
+                        </ul>
+                    </div>
+
+                    <!-- Dry Dock Service Card -->
+                    <div class="additional-service-card" style="grid-column: 1 / -1;">
+                        <h4 style="text-decoration: underline;"><i class="fas fa-wrench" style="color: var(--accent-300);"></i> Dry Dock Service</h4>
+                        <p style="color: var(--white); margin: var(--space-3) 0;">We take pride in being able to manage the multiple facets of a dry-dock. Our highly experienced team of professionals with international consulting experience offers a bouquet of services that include:</p>
+                        <ul style="list-style: disc; padding-left: var(--space-5); color: var(--white); columns: 2; column-gap: var(--space-8);">
+                            <li style="margin-bottom: var(--space-2);">Developing and implementing a plan in accordance with vessel's requirements</li>
+                            <li style="margin-bottom: var(--space-2);">Co-ordinating with various Dry-docks across the globe and arrange slots as per client's requirements</li>
+                            <li style="margin-bottom: var(--space-2);">Co-ordinating with OEMs and Suppliers</li>
+                            <li style="margin-bottom: var(--space-2);">Supervising every aspect of repair and maintenance process</li>
+                            <li style="margin-bottom: var(--space-2);">Extensive monitoring of dry dock process to ensure quality and safety objectives are complied in accordance with international standards and client's instructions</li>
+                            <li style="margin-bottom: var(--space-2);">Providing consultative and superintendence expertise throughout the dry-dock process</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Brochure Download Section -->
+    <section class="brochure-section" id="brochure">
+        <div class="container">
+            <div class="brochure-content">
+                <div class="brochure-text">
+                    <h3><i class="fas fa-file-pdf"></i> Download Our Brochure</h3>
+                    <p>Get detailed information about our comprehensive maritime services, capabilities, and expertise. Download our company brochure to learn more about how VOLAS NexGen Marine can support your maritime operations.</p>
+                </div>
+                <div class="brochure-buttons">
+                    <a href="brochure/VOLAS NexGen Marine_20251224_152213_0000_251229_152355.pdf" download class="download-btn">
+                        <i class="fas fa-download"></i>
+                        Download Brochure
                     </a>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Join Us Section -->
+    <section class="join-us-page" id="join-us">
+        <!-- Join Us Hero -->
+        <div class="join-us-hero">
+            <div class="container">
+                <h1>Join Us</h1>
+                <p>We are Always Ready to Help You and Answer your Questions</p>
+            </div>
+        </div>
+
+        <!-- Join Us Content -->
+        <div class="container">
+            <div class="join-us-content">
+                <!-- Contact Info Side -->
+                <div class="join-us-info reveal">
+                    <h3>Get In Touch</h3>
+                    <p>Have questions about our maritime services? We're here to help. Reach out to us through any of the following channels.</p>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Office Address</h4>
+                            <p>F-403, Grand Ajnara Heritage,<br>Sector-74, Noida, UP-201301, India</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Phone Number</h4>
+                            <p><a href="tel:+919939608110">+91 99396 08110</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Email Address</h4>
+                            <p><a href="mailto:info@volasnexgenmarine.com">info@volasnexgenmarine.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Working Hours</h4>
+                            <p>24/7 Support Available<br>Monday - Sunday</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drop a Message Form -->
+                <div class="join-us-form-container reveal">
+                    <h3>Drop a Message</h3>
+                    
+                    <form class="join-us-form" id="joinUsForm">
+                        <div class="form-group">
+                            <label for="jName">First Name *</label>
+                            <input type="text" id="jName" name="name" placeholder="Enter your first name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jEmail">Email Address *</label>
+                            <input type="email" id="jEmail" name="email" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jPhone">Phone Number</label>
+                            <input type="tel" id="jPhone" name="phone" placeholder="+91 XXXXX XXXXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jMessage">Message</label>
+                            <textarea id="jMessage" name="message" placeholder="Write your message here..." maxlength="180"></textarea>
+                            <div class="char-counter"><span id="charCount">0</span> / 180</div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            Submit
+                        </button>
+                    </form>
+
+                    <!-- Get Quote Button -->
+                    <div class="get-quote-cta">
+                        <p>Need a detailed quotation for our services?</p>
+                        <button type="button" class="get-quote-btn" id="openQuoteModal">
+                            <i class="fas fa-file-invoice"></i> Get Quote
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Get Quote Modal -->
+    <div class="quote-modal" id="quoteModal">
+        <div class="quote-modal-content">
+            <div class="quote-modal-header">
+                <h2><i class="fas fa-file-alt"></i> Request Free Quotation</h2>
+                <button class="quote-modal-close" id="closeQuoteModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="quote-modal-body">
+                <form class="quote-form" id="getQuoteForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gqName">Your Name *</label>
+                            <input type="text" id="gqName" name="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gqEmail">Email Address *</label>
+                            <input type="email" id="gqEmail" name="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gqPhone">Phone Number *</label>
+                            <input type="tel" id="gqPhone" name="phone" placeholder="+91 XXXXX XXXXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gqCompany">Company Name</label>
+                            <input type="text" id="gqCompany" name="company" placeholder="Your company name">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gqVesselName">Vessel Name</label>
+                            <input type="text" id="gqVesselName" name="vesselName" placeholder="Name of the vessel">
+                        </div>
+                        <div class="form-group">
+                            <label for="gqVesselType">Vessel Type</label>
+                            <select id="gqVesselType" name="vesselType">
+                                <option value="">Select Vessel Type</option>
+                                <option value="tanker">Oil/Chemical Tanker</option>
+                                <option value="bulk">Bulk Carrier</option>
+                                <option value="container">Container Ship</option>
+                                <option value="lng">LNG/LPG Carrier</option>
+                                <option value="general">General Cargo</option>
+                                <option value="offshore">Offshore Vessel</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gqService">Service Required *</label>
+                        <select id="gqService" name="service" required>
+                            <option value="">Select a Service</option>
+                            <option value="nav-audit">Navigational Audit</option>
+                            <option value="cargo-audit">Cargo Audit</option>
+                            <option value="engineering-audit">Engineering Audit</option>
+                            <option value="ism-audit">ISM / ISPS / MLC Audit</option>
+                            <option value="cyber-audit">Cyber Security Audit</option>
+                            <option value="pre-sire">Pre-OCIMF SIRE 2.0</option>
+                            <option value="pre-psc">Pre-PSC Inspection</option>
+                            <option value="condition-survey">Condition Survey</option>
+                            <option value="bunker-survey">Bunker Survey</option>
+                            <option value="draft-survey">Draft Survey</option>
+                            <option value="on-off-hire">On-Hire / Off-Hire Survey</option>
+                            <option value="supercargo">Super-Cargo Attendance</option>
+                            <option value="drydock">Dry Dock Services</option>
+                            <option value="other">Other Services</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gqLocation">Port / Location</label>
+                            <input type="text" id="gqLocation" name="location" placeholder="Port or location of service">
+                        </div>
+                        <div class="form-group">
+                            <label for="gqDate">Preferred Date</label>
+                            <input type="date" id="gqDate" name="preferredDate">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gqMessage">Additional Details</label>
+                        <textarea id="gqMessage" name="message" placeholder="Please provide any additional information about your requirements..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Footer -->
     <footer class="footer">
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
         <div class="container">
             <div class="footer-content">
                 <div>
                     <div class="footer-logo">
-                           <div style="display: flex; align-items: center; gap: 12px;">
-                                <img src="images/logo.jpg"
-                                    alt="VOLAS NexGen Marine Logo"
-                                    style="border-radius: 50px; width: 60px; height: 60px;">
+                       <div style="display: flex; align-items: center; gap: 12px;">
+                            <img src="images/logo.jpg"
+                                alt="VOLAS NexGen Marine Logo"
+                                style="border-radius: 50px; width: 60px; height: 60px;">
 
-                                <h3 style="color: var(--white); font-size: var(--text-3xl); margin: 0;">
-                                    VOLAS NexGen Marine
-                                </h3>
-                            </div>
-                        <p style="color: var(--gold-400);">Services with Cushion of a Palm</p>
+                             <h3 style="color: var(--white); font-size: var(--text-3xl); margin: 0;">
+                                VOLAS NexGen Marine
+                            </h3>
+                        </div>
+                        <p style="color: var(--accent-400);">Services with Cushion of a Palm</p>
                     </div>
                     <p class="footer-description">
                         Leading global provider of independent ship management services, maritime audits, 
                         and specialized marine services with excellence and innovation.
                     </p>
-                    <!-- <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    </div> -->
                 </div>
 
                 <div class="footer-section">
@@ -1538,6 +3326,8 @@
                         <li><a href="#mission-vision">Mission & Vision</a></li>
                         <li><a href="#philosophy">Our Philosophy</a></li>
                         <li><a href="#services">Services</a></li>
+                        <li><a href="#brochure">Brochure</a></li>
+                        <li><a href="#join-us">Join Us</a></li>
                     </ul>
                 </div>
 
@@ -1547,6 +3337,7 @@
                         <li><a href="#services">Maritime Audits</a></li>
                         <li><a href="#services">Vessel Surveys</a></li>
                         <li><a href="#services">Inspections</a></li>
+                        <li><a href="#services">Super-Cargo</a></li>
                         <li><a href="#services">Dry Dock Services</a></li>
                     </ul>
                 </div>
@@ -1578,6 +3369,7 @@
         </div>
     </footer>
 
+
     <!-- JavaScript -->
     <script>
         // Mobile Menu Toggle
@@ -1588,8 +3380,117 @@
             navMenu.classList.toggle('active');
         });
 
+        // Mobile dropdown toggle
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            const link = item.querySelector('.nav-link');
+            if (item.querySelector('.mega-dropdown')) {
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        item.classList.toggle('mobile-open');
+                    }
+                });
+            }
+        });
+
+        // Mega dropdown links - switch to correct service tab
+        const megaDropdownLinks = document.querySelectorAll('.mega-dropdown a[data-tab]');
+        megaDropdownLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetTab = this.getAttribute('data-tab');
+                
+                // Switch to the correct tab
+                const tabButtons = document.querySelectorAll('.tab-button');
+                const serviceSections = document.querySelectorAll('.service-category-section');
+                
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                serviceSections.forEach(section => section.classList.remove('active'));
+                
+                document.querySelector(`.tab-button[data-tab="${targetTab}"]`).classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                
+                // Scroll to services section
+                const servicesSection = document.getElementById('services');
+                const headerOffset = 80;
+                const elementPosition = servicesSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Quote Modal
+        const quoteModal = document.getElementById('quoteModal');
+        const openQuoteBtn = document.getElementById('openQuoteModal');
+        const navGetQuoteBtn = document.getElementById('navGetQuote');
+        const closeQuoteBtn = document.getElementById('closeQuoteModal');
+
+        function openModal() {
+            quoteModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            quoteModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Open modal from Join Us page button
+        if (openQuoteBtn) {
+            openQuoteBtn.addEventListener('click', openModal);
+        }
+
+        // Open modal from header Get Quote button
+        if (navGetQuoteBtn) {
+            navGetQuoteBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+                navMenu.classList.remove('active');
+            });
+        }
+
+        if (closeQuoteBtn) {
+            closeQuoteBtn.addEventListener('click', closeModal);
+        }
+
+        // Close modal on outside click
+        if (quoteModal) {
+            quoteModal.addEventListener('click', (e) => {
+                if (e.target === quoteModal) {
+                    closeModal();
+                }
+            });
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && quoteModal && quoteModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Character counter for message textarea
+        const messageTextarea = document.getElementById('jMessage');
+        const charCount = document.getElementById('charCount');
+        
+        if (messageTextarea && charCount) {
+            messageTextarea.addEventListener('input', function() {
+                charCount.textContent = this.value.length;
+            });
+        }
+
+
         // Header Scroll Effect
         const header = document.getElementById('header');
+        const backToTop = document.getElementById('backToTop');
         
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
@@ -1597,7 +3498,24 @@
             } else {
                 header.classList.remove('header-scrolled');
             }
+            
+            // Back to top button visibility
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
         });
+
+        // Back to Top Click Handler
+        if (backToTop) {
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
 
         // Active Navigation Link
         const sections = document.querySelectorAll('section[id]');
@@ -1680,7 +3598,135 @@
             });
         });
 
-        // Initialize AOS or other libraries if needed
+
+        // Hero Slider
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        const prevArrow = document.querySelector('.prev-arrow');
+        const nextArrow = document.querySelector('.next-arrow');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+            // Handle wrap around
+            if (index >= slides.length) index = 0;
+            if (index < 0) index = slides.length - 1;
+            
+            currentSlide = index;
+            
+            // Update slides
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+            
+            // Update dots
+            dots.forEach((dot, i) => {
+                dot.classList.remove('active');
+                if (i === currentSlide) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function startSlider() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopSlider() {
+            clearInterval(slideInterval);
+        }
+
+        // Event listeners for slider
+        if (nextArrow) {
+            nextArrow.addEventListener('click', () => {
+                stopSlider();
+                nextSlide();
+                startSlider();
+            });
+        }
+
+        if (prevArrow) {
+            prevArrow.addEventListener('click', () => {
+                stopSlider();
+                prevSlide();
+                startSlider();
+            });
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopSlider();
+                showSlide(index);
+                startSlider();
+            });
+        });
+
+        // Start automatic slider
+        startSlider();
+
+        // Join Us Form Handler (Drop a Message)
+        const joinUsForm = document.getElementById('joinUsForm');
+        if (joinUsForm) {
+            joinUsForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! Our team will get back to you shortly.');
+                this.reset();
+                if (charCount) charCount.textContent = '0';
+            });
+        }
+
+        // Get Quote Form Handler (Modal)
+        const getQuoteForm = document.getElementById('getQuoteForm');
+        if (getQuoteForm) {
+            getQuoteForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your quotation request! Our team will review your requirements and get back to you within 24 hours.');
+                this.reset();
+                closeModal();
+            });
+        }
+
+        // Toggle Service List Show More/Less
+        function toggleServiceList(btn) {
+            const serviceCard = btn.closest('.service-card');
+            const serviceList = serviceCard.querySelector('.service-list.collapsible');
+            
+            if (!serviceList) return;
+            
+            const isExpanded = serviceList.classList.contains('expanded');
+            
+            if (isExpanded) {
+                serviceList.classList.remove('expanded');
+                btn.classList.remove('expanded');
+                btn.querySelector('span').textContent = 'Show More';
+            } else {
+                serviceList.classList.add('expanded');
+                btn.classList.add('expanded');
+                btn.querySelector('span').textContent = 'Show Less';
+            }
+        }
+
+        // Hide show more button if list has 5 or fewer items
+        document.querySelectorAll('.service-list.collapsible').forEach(list => {
+            const items = list.querySelectorAll('li');
+            const serviceCard = list.closest('.service-card');
+            const btn = serviceCard.querySelector('.show-more-btn');
+            if (items.length <= 5 && btn) {
+                btn.style.display = 'none';
+            }
+        });
+
         console.log('VOLAS NexGen Marine website loaded successfully!');
     </script>
 </body>
