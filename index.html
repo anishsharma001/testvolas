@@ -3327,8 +3327,8 @@
                     
                     <form class="join-us-form" id="joinUsForm">
                         <div class="form-group">
-                            <label for="jName">First Name *</label>
-                            <input type="text" id="jName" name="name" placeholder="Enter your first name" required>
+                            <label for="jName">Full Name *</label>
+                            <input type="text" id="jName" name="name" placeholder="Full Name " required>
                         </div>
 
                         <div class="form-group">
@@ -3346,6 +3346,7 @@
                             <textarea id="jMessage" name="message" placeholder="Write your message here..." maxlength="180"></textarea>
                             <div class="char-counter"><span id="charCount">0</span> / 180</div>
                         </div>
+                        <div class="form-error" style="display:none; color:#DC2626; font-size:14px; margin-bottom:12px;"></div>
 
                         <button type="submit" class="submit-btn">
                             Submit
@@ -3770,6 +3771,14 @@
                 document.getElementById(targetTab).classList.add('active');
             });
         });
+        function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function isValidPhone(phone) {
+        return /^[0-9]{7,15}$/.test(phone.replace(/\s+/g, ''));
+        }
+
 
 
         // Hero Slider
@@ -3855,44 +3864,74 @@
         joinUsForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
+            const errorBox = this.querySelector('.form-error');
             const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
 
+            const name = this.querySelector('[name="name"]').value.trim();
+            const email = this.querySelector('[name="email"]').value.trim();
+            const phone = this.querySelector('[name="phone"]').value.trim();
+            const message = this.querySelector('[name="message"]').value.trim();
+
+            errorBox.style.display = 'none';
+            errorBox.textContent = '';
+
+            // ---- VALIDATION ----
+            if (!name || !email || !phone || !message) {
+            errorBox.textContent = 'Please fill in all required fields.';
+            errorBox.style.display = 'block';
+            return;
+            }
+
+            if (!isValidEmail(email)) {
+            errorBox.textContent = 'Please enter a valid email address.';
+            errorBox.style.display = 'block';
+            return;
+            }
+
+            if (!isValidPhone(phone)) {
+            errorBox.textContent = 'Please enter a valid mobile number.';
+            errorBox.style.display = 'block';
+            return;
+            }
+
+            // ---- SUBMIT UI ----
+            const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
 
             const formData = new FormData(this);
-
-            // REQUIRED by Web3Forms
             formData.append('access_key', '7285eb45-2e69-4ee8-b73a-ec3dbd542e60');
-            formData.append('subject', 'New Contact Message from VOLAS NexGen Marine Pvt. Ltd. Website');
-            formData.append('from_name', 'VOLAS NexGen Marine Pvt. Ltd. Website');
+            formData.append('subject', 'New Join Us Submission');
+            formData.append('from_name', 'VOLAS NexGen Marine Website');
 
             try {
             const response = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
-                body: formData,
+                body: formData
             });
 
             const result = await response.json();
 
             if (result.success) {
-                alert('Thank you for your message! Our team will get back to you shortly.');
                 this.reset();
+
+                // ✅ OPEN BROCHURE MODAL
+                openBrochureModal();
+
             } else {
-                console.error('Web3Forms error:', result);
-                alert('Sorry, there was an error sending your message. Please try again later.');
+                errorBox.textContent = 'Submission failed. Please try again.';
+                errorBox.style.display = 'block';
             }
-            } catch (error) {
-            console.error('Form submission error:', error);
-            alert('Network error. Please try again or email us directly.');
+            } catch (err) {
+            console.error(err);
+            errorBox.textContent = 'Network error. Please try again later.';
+            errorBox.style.display = 'block';
             } finally {
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
             }
         });
         }
-
 
         // Get Quote Form Handler (Modal)
        const getQuoteForm = document.getElementById('getQuoteForm');
@@ -3914,7 +3953,7 @@
             const formData = new FormData(this);
 
             // Required by Web3Forms
-            formData.append('access_key', '7285eb0');
+            formData.append('access_key', '7285eb45-2e69-4ee8-b73a-ec3dbd542e60');
             formData.append(
             'subject',
             'New Quote Request from VOLAS NexGen Marine Pvt. Ltd. Website'
